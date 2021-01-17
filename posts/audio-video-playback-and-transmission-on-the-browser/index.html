@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nick22nd.me","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="概述音视频成为传输信息的重要媒介，而浏览器作为各平台最为泛用的软件，本文对音视频的在浏览器上的播放和传输进行简单说明。 PC 上因为客户端播放音视频过于沉重，需要单独下载播放器，而B&#x2F;S 结构更加灵活，轻巧，便于新功能的集成，只需浏览器即可, 并且依托Web 具备跨平台的属性，并且方便接入其它的功能接口，且无需更新客户端。 音视频在浏览器中的播放首先需要对多媒体有一些基本的概念，将目的作为理解的关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器上音视频的播放和传输">
+<meta property="og:url" content="https://nick22nd.me/posts/audio-video-playback-and-transmission-on-the-browser/index.html">
+<meta property="og:site_name" content="Nick22nd">
+<meta property="og:description" content="概述音视频成为传输信息的重要媒介，而浏览器作为各平台最为泛用的软件，本文对音视频的在浏览器上的播放和传输进行简单说明。 PC 上因为客户端播放音视频过于沉重，需要单独下载播放器，而B&#x2F;S 结构更加灵活，轻巧，便于新功能的集成，只需浏览器即可, 并且依托Web 具备跨平台的属性，并且方便接入其它的功能接口，且无需更新客户端。 音视频在浏览器中的播放首先需要对多媒体有一些基本的概念，将目的作为理解的关">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-20T03:30:52.000Z">
+<meta property="article:modified_time" content="2021-01-04T13:31:28.654Z">
+<meta property="article:author" content="Nick22nd">
+<meta property="article:tag" content="音视频">
+<meta property="article:tag" content="webrtc">
+<meta property="article:tag" content="MSE">
+<meta property="article:tag" content="浏览器">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nick22nd.me/posts/audio-video-playback-and-transmission-on-the-browser/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>浏览器上音视频的播放和传输 | Nick22nd</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173897481-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-173897481-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nick22nd" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Nick22nd</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%9A%84%E6%92%AD%E6%94%BE"><span class="nav-number">1.1.</span> <span class="nav-text">音视频在浏览器中的播放</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ActiveX%E6%8E%A7%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">ActiveX控件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Flash%E6%92%AD%E6%94%BE%E5%99%A8"><span class="nav-number">1.1.2.</span> <span class="nav-text">Flash播放器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE-lt-video-gt"><span class="nav-number">1.1.3.</span> <span class="nav-text">标签&lt;video&gt;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E7%9A%84%E4%BC%A0%E8%BE%93"><span class="nav-number">1.2.</span> <span class="nav-text">音视频在浏览器中的传输</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#http"><span class="nav-number">1.2.1.</span> <span class="nav-text">http</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#websocket"><span class="nav-number">1.2.2.</span> <span class="nav-text">websocket</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webrtc"><span class="nav-number">1.2.3.</span> <span class="nav-text">webrtc</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93-1"><span class="nav-number">1.3.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Nick22nd"
+      src="/images/Nick.PNG">
+  <p class="site-author-name" itemprop="name">Nick22nd</p>
+  <div class="site-description" itemprop="description">Tracing learning in interaction</div>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nick22nd.me/posts/audio-video-playback-and-transmission-on-the-browser/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Nick.PNG">
+      <meta itemprop="name" content="Nick22nd">
+      <meta itemprop="description" content="Tracing learning in interaction">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nick22nd">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          浏览器上音视频的播放和传输
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-20 11:30:52" itemprop="dateCreated datePublished" datetime="2020-07-20T11:30:52+08:00">2020-07-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-04 21:31:28" itemprop="dateModified" datetime="2021-01-04T21:31:28+08:00">2021-01-04</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/audio-video-playback-and-transmission-on-the-browser/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/audio-video-playback-and-transmission-on-the-browser/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>音视频成为传输信息的重要媒介，而浏览器作为各平台最为泛用的软件，本文对音视频的在浏览器上的播放和传输进行简单说明。</p>
+<p>PC 上因为客户端播放音视频过于沉重，需要单独下载播放器，而B/S 结构更加灵活，轻巧，便于新功能的集成，只需浏览器即可, 并且依托Web 具备跨平台的属性，并且方便接入其它的功能接口，且无需更新客户端。</p>
+<h3 id="音视频在浏览器中的播放"><a href="#音视频在浏览器中的播放" class="headerlink" title="音视频在浏览器中的播放"></a>音视频在浏览器中的播放</h3><p>首先需要对多媒体有一些基本的概念，将目的作为理解的关键：</p>
+<ol>
+<li>容器格式<br>包括MP4，FLV，MKV等，其作用是将编码后的多媒体 “包装” 成一个文件，目的是<strong>方便播放</strong>。比如将不同的字幕和配音封装到一个MKV容器中，那么不同观众在观看时可以选择自己想要的字幕和配音种类，获得更好的体验。</li>
+<li>编码格式<br>包括H.264, VP8，AAC等, 其作用是将原始的多媒体数据按照一定的算法进行编码，目的是<strong>压缩数据</strong>。比如一个影片中连续的两帧，都是满月当空，后一帧只是多了一个狼人，那么后一帧的信息只需要增加狼人部分的RGB点阵信息（并非实际算法）</li>
+<li>传输协议<br>包括RTSP，RTMP，HLS等 ，是客户端和服务端传输媒体流的网络应用协议， 目的是<strong>传输</strong>。比如直播的过程主播通过采集媒体信息，通过推流传输到直播平台，直播平台处理流，观众进入直播间向服务器拉流，推拉流过程中都依赖传输协议。</li>
+</ol>
+<p>在浏览器中有以下三种方法来播放音视频</p>
+<h4 id="ActiveX控件"><a href="#ActiveX控件" class="headerlink" title="ActiveX控件"></a>ActiveX控件</h4><p>来自微软的Basic，需要单独安装控件，浏览器只是提供窗口的功能；不过现在Chrome 和FireFox 都已经不再支持，只有IE 还提供支持。这种方案应用当前已经比较少了，在监控安防领域还有着部分的应用，因为使用的多为rtsp 协议的原因，这一协议在浏览器上基本没有合适的解决方案，要么使用单独的客户端如：VLC 播放器，要么采用IE+ActiveX 控件的形式来完成播放。</p>
+<h4 id="Flash播放器"><a href="#Flash播放器" class="headerlink" title="Flash播放器"></a>Flash播放器</h4><p>来自Adobe 的flash，曾经使用最多最广泛，现在提及更多的是来自安全漏洞的源头，恨不得赶紧扫进历史的垃圾堆。Chrome 在Chrome 76 开始已经默认禁止，并且宣布2020 年12 月之后已经不再支持Flash 播放器。连Adobe 本身也宣布在2021 年起停止支持Flash。浏览器播放RTMP 流需要依赖Flash。</p>
+<h4 id="标签-lt-video-gt"><a href="#标签-lt-video-gt" class="headerlink" title="标签&lt;video&gt;"></a>标签&lt;video&gt;</h4><p>Chrome 的媒体播放与架构中的Media 模块密切相关，支持的格式avc/aac，avc也就是h264, google 自家的vp8,vp9, 具体情况可以看具体说明 <a target="_blank" rel="noopener" href="https://sites.google.com/a/chromium.org/dev/audio-video">Chromium Project</a>。但是标准的HTML 中的&lt;video&gt;标签只支持MP4，而且还是fMP4(Fragment MP4)，总之&lt;video&gt; 对格式支持非常有限。而且&lt;video&gt;标签的src还不支持切换片段，而媒体流传输通常都会进行分片。如何解决这个问题？</p>
+<p>解决的核心就是MSE(Media Source Extensions), 它的功能可以抽象成Media Source的两个方向：</p>
+<ol>
+<li>入口： 是Video 和Audio 的两个Buffer，传过来的媒体文件解析分离（demux）出视频流和音频流，然后放入两个Buffer中。</li>
+<li>出口： Media Source 将音视频的两个Buffer重新封装（remux）fMP4格式的文件，通过**<strong>Blob对象和URL**</strong>，传出到&lt;video&gt;进行播放</li>
+</ol>
+<p>核心的两点：</p>
+<ul>
+<li>Media Source Extensions</li>
+<li>Source Buffer</li>
+</ul>
+<p>这也是当前主流的播放方式，非常知名的开源项目flv.js<a target="_blank" rel="noopener" href="https://github.com/xqq">来自谦谦大佬</a>就是通过JS软解flv，得到音视频流喂给MSE 的两个Buffer，最后生成fMP4文件交给&lt;video&gt;播放。</p>
+<p>还有HLS（后文会有介绍）的在浏览器中的播放部分，只不过格式换成了ts的容器格式，而且增加m3u8格式作为一段媒体流的基本信息和索引列表。</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><ol>
+<li>ActiveX几乎已经历史遗留产物了，也只有IE这样的兼容支持才能保持存在。</li>
+<li>Flash即将在2020年12月不再支持，是Adobe公司本身宣布，浏览器将来也将停止支持；非常奇葩的是在中国，某司宣布会继续提供Flash支持。</li>
+<li>浏览器上的音视频播放以后会全部通过 &lt;video&gt; 标签本身来实现。</li>
+</ol>
+<h3 id="音视频在浏览器中的传输"><a href="#音视频在浏览器中的传输" class="headerlink" title="音视频在浏览器中的传输"></a>音视频在浏览器中的传输</h3><h4 id="http"><a href="#http" class="headerlink" title="http"></a>http</h4><p>HTTP传输通用性最强，不受到端口和防火墙的限制，最为典型的就是HLS（HTTP Live Streaming） 就是基于HTTP来实现的，相当于将需要传输的媒体文件，切分成带编号的媒体文件，然后通过HTTP协议来获取媒体文件，并且提供了一个媒体文件信息的列表，只需要按照列表顺序逐个拉取播放。</p>
+<h4 id="websocket"><a href="#websocket" class="headerlink" title="websocket"></a>websocket</h4><p>相较http而言，当前使用得比较少，但是也有ws-flv等方案，基本原理就是传输协议的变化，变成了对浏览器友好的websocket，对前端而言只是数据的获取从XHR 传输换成了websocket 而已。</p>
+<h4 id="webrtc"><a href="#webrtc" class="headerlink" title="webrtc"></a>webrtc</h4><p>Chrome推出的新协议，在浏览器中有着原生的支持，主要用于P2P连接，主要的API</p>
+<ol>
+<li>getUserMedia: 从源（如网络摄像头）中获取音频和视频（注：在非HTTPS环境中会被禁止）</li>
+<li>RTCPeerConnection: 音视频流的连接</li>
+<li>RTCDataChannel: 音视频流的数据通道</li>
+<li>MediaRecorder: 保存媒体流接口</li>
+</ol>
+<p>它是直接在传输层采用了RTP/RTCP。RTP 本身就定义了要传输串流媒体的参数标准(封包标准)，或者说本质上就是一种流容器，所以不需要做太多处理即可播放，从这点而言更像是应用层。另外它虽然是传输层协议，但是又能基于TCP，UDP实现不同的传输。RTCP 则是为RTP 提供统计功能，描述传输状态。</p>
+<p>另外P2P音视频的传输不能没有连接目标凭空传输，而P2P的坑点就在于如何在重重NAT+防火墙下建立双方的连接 ，webRTC在建立P2P连接的过程中会需要借助一个Signal Server（信令服务器搭建简单，并且有不少免费公开信令服务器可供选择），专门用于双方的交换信息，建立连接。</p>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><ol>
+<li>HTTP无需多言</li>
+<li>websocket 与传统意义上的socket编程原理相似，借助HTTP来完成初次握手，在Header中会有upgrade的标记</li>
+<li>WebRTC是一个很复杂的协议，底层是C/C++实现的，在浏览器中提供JS的接口；浏览器只能使用设计好的接口，而在客户端中由于能直接修改C/C++来适应业务需要，所以反而比浏览器应用灵活</li>
+</ol>
+<p>END</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" rel="tag"># 音视频</a>
+              <a href="/tags/webrtc/" rel="tag"># webrtc</a>
+              <a href="/tags/MSE/" rel="tag"># MSE</a>
+              <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag"># 浏览器</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/about-JavaScript-01/" rel="prev" title="JavaScript的奇妙之旅(一)">
+      <i class="fa fa-chevron-left"></i> JavaScript的奇妙之旅(一)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/you-dont-know-JS/" rel="next" title="你不知道的JS（上）">
+      你不知道的JS（上） <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nick22nd</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://nick22nd.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://nick22nd.me/posts/audio-video-playback-and-transmission-on-the-browser/";
+    this.page.identifier = "posts/audio-video-playback-and-transmission-on-the-browser/";
+    this.page.title = "浏览器上音视频的播放和传输";
+    };
+  NexT.utils.loadComments('#disqus_thread', () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://nick22nd.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

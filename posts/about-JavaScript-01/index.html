@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nick22nd.me","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="概要JavaScript是当前最流行编程语言之一，JavaScript发展过程是怎么样的？它有哪些重要的发展阶段呢？ 初始时代JS是1995年网景为自家浏览器设计的用于网页交互的脚本语言. 其由Brendan Eich设计, 借鉴了Scheme , 当时如日中天的Java ,以及Smalltalk的特性.  所以JavaScript在主流编程语言显得很奇怪， 首先它带有很强的Scheme的印记，函">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript的奇妙之旅(一)">
+<meta property="og:url" content="https://nick22nd.me/posts/about-JavaScript-01/index.html">
+<meta property="og:site_name" content="Nick22nd">
+<meta property="og:description" content="概要JavaScript是当前最流行编程语言之一，JavaScript发展过程是怎么样的？它有哪些重要的发展阶段呢？ 初始时代JS是1995年网景为自家浏览器设计的用于网页交互的脚本语言. 其由Brendan Eich设计, 借鉴了Scheme , 当时如日中天的Java ,以及Smalltalk的特性.  所以JavaScript在主流编程语言显得很奇怪， 首先它带有很强的Scheme的印记，函">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-23T14:30:24.000Z">
+<meta property="article:modified_time" content="2021-01-04T13:31:28.654Z">
+<meta property="article:author" content="Nick22nd">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nick22nd.me/posts/about-JavaScript-01/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaScript的奇妙之旅(一) | Nick22nd</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173897481-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-173897481-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nick22nd" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Nick22nd</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E6%97%B6%E4%BB%A3"><span class="nav-number">2.</span> <span class="nav-text">初始时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AJAX"><span class="nav-number">3.</span> <span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JQuery"><span class="nav-number">4.</span> <span class="nav-text">JQuery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%B8%8EJS"><span class="nav-number">5.</span> <span class="nav-text">前端框架与JS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%AB%AFNodeJS"><span class="nav-number">6.</span> <span class="nav-text">后端NodeJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E6%96%B9%E9%9D%A2"><span class="nav-number">7.</span> <span class="nav-text">其它方面</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Nick22nd"
+      src="/images/Nick.PNG">
+  <p class="site-author-name" itemprop="name">Nick22nd</p>
+  <div class="site-description" itemprop="description">Tracing learning in interaction</div>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nick22nd.me/posts/about-JavaScript-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Nick.PNG">
+      <meta itemprop="name" content="Nick22nd">
+      <meta itemprop="description" content="Tracing learning in interaction">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nick22nd">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript的奇妙之旅(一)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-23 22:30:24" itemprop="dateCreated datePublished" datetime="2020-03-23T22:30:24+08:00">2020-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-04 21:31:28" itemprop="dateModified" datetime="2021-01-04T21:31:28+08:00">2021-01-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/about-JavaScript-01/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/about-JavaScript-01/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><p>JavaScript是当前最流行编程语言之一，JavaScript发展过程是怎么样的？它有哪些重要的发展阶段呢？</p>
+<h3 id="初始时代"><a href="#初始时代" class="headerlink" title="初始时代"></a>初始时代</h3><p>JS是1995年网景为自家浏览器设计的用于网页交互的脚本语言. 其由Brendan Eich设计, 借鉴了Scheme , 当时如日中天的Java ,以及Smalltalk的特性.  所以JavaScript在主流编程语言显得很奇怪， 首先它带有很强的Scheme的印记，函数是第一公民，原型链；但是它也同样有着Java的一些标志。</p>
+<h3 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h3><p>AJAX(asynchronous Javascript and XML)可谓是Web发展的重要里程碑, 它极大地提高了Web应用程序的交互性。 浏览器在用户界面和服务器之间添加了一个抽象层面, 通过JavaScript来控制XMLHttpRequest对象，专门向服务器发送数据以及接受来自服务器的数据，并且在处理数据后并控制界面的变化反馈给用户。</p>
+<p>AJAX的优点：</p>
+<ul>
+<li>减少了静态资源的重复请求，无缝刷新界面</li>
+<li>提高了交互性，给予了前端构建富应用的能力</li>
+</ul>
+<h3 id="JQuery"><a href="#JQuery" class="headerlink" title="JQuery"></a>JQuery</h3><p>Jquery是将原生的JS的DOM操作进行封装, 正如其核心理念:Write less,Do more. 使用Jquery能大大地减少形如getElementById之类繁琐的操作, 以更加简洁的方式来操作DOM树以及进行Ajax的操作，同时解决了一部分浏览器兼容问题。</p>
+<h3 id="前端框架与JS"><a href="#前端框架与JS" class="headerlink" title="前端框架与JS"></a>前端框架与JS</h3><p>浏览器的发展和JS的进化,以及三大框架出现时间,重要的节点如下:</p>
+<ul>
+<li>2008年的V8引擎发布</li>
+<li>2008年ECMAScript 5.0发布</li>
+<li>2009年AngularJS</li>
+<li>2011年React</li>
+<li>2014年Vue</li>
+<li>2014年Angular2</li>
+<li>2015年ECMAScript 6发布 ,且改名为ECMAScript 2015( ES6大多数情况就是指这一版本, 也有情况作为每年6月新标准的含义 )</li>
+</ul>
+<p>不大的时间跨度中，前端变化可谓是日新月异，各种框架层出不穷。</p>
+<p>当前而言，前端情况基本稳定下来，当然，是相对之前的日新月异而言。</p>
+<p>相较之前的变化：</p>
+<ul>
+<li>JS通过框架的分层架构的MV*，控制着ViewModel，声明式地完成业务代码，原有的DOM操作由框架来完成</li>
+<li>组件化，非常有意义</li>
+<li>另外React通过将JSX 转换成虚拟DOM，也就是将HTML转换成JS对象，对DOM有了完全的控制</li>
+<li>ES6解决了许多过去语言层面的问题，一些新的特性对开发者更加友好。</li>
+</ul>
+<h3 id="后端NodeJS"><a href="#后端NodeJS" class="headerlink" title="后端NodeJS"></a>后端NodeJS</h3><p>在Node出现之前，JavaScript在后端上没有太多可说的，只是少部分作为脚本语言输出拼接html传递到浏览器。NodeJS的出现给JavaScript推开了另一个世界的大门，其作者本身是为了编写一个高性能服务器，选择JavaScript的原因是<br>    1. JavaScript在服务端没有历史包袱，可以尽情发挥<br>    2. V8引擎的高性能<br>    3. 异步IO和事件驱动的机制</p>
+<p>Node作为「服务端语言」，其适用的场景是高I/O的场景，然而现在Node更像是一个平台：活跃的社区，NPM中数量庞大的包。<br>主要应用：</p>
+<ol>
+<li>后端框架如Express,Next</li>
+<li>前端工具链的基础设施</li>
+<li>服务端渲染</li>
+</ol>
+<p>Node对Web相关的支持做得很好，而且与前端没有语言的切换成本，所以对于全栈定位非常合适，但是和传统后端语言Java以及Go比较还是有不少问题的。</p>
+<h3 id="其它方面"><a href="#其它方面" class="headerlink" title="其它方面"></a>其它方面</h3><p>另外出现了很多类JS的语言如:</p>
+<ul>
+<li>TypeScript:其实是JS的超集, 可编译成JS代码. 由微软主持开发,其中有Anders Hejlsberg参与. TS写起来感觉更有安全感, 而且许多面向对象特性引入,让设计更加舒畅 .而且三大框架都在积极使用Typescript, 十分值得开发者学习.</li>
+<li>Dart: 感觉更像是Java的JS, 很多人大概也是由于2019以来Flutter的火热才接触学习这门语言. 而且写Flutter应用的时候, 很多逻辑和React相似, 官方也提到了参考了React. 另外：Dart最初是google为了替代JS而推出的语言，曾经Chrome内建了Dart VM，但很遗憾没有太多后续，Chrome也在移除了Dart的支持。</li>
+</ul>
+<p>end</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/posts/audio-video-playback-and-transmission-on-the-browser/" rel="next" title="浏览器上音视频的播放和传输">
+      浏览器上音视频的播放和传输 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nick22nd</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://nick22nd.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://nick22nd.me/posts/about-JavaScript-01/";
+    this.page.identifier = "posts/about-JavaScript-01/";
+    this.page.title = "JavaScript的奇妙之旅(一)";
+    };
+  NexT.utils.loadComments('#disqus_thread', () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://nick22nd.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
