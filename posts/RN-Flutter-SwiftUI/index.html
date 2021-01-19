@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nick22nd.me","root":"/","scheme":"Gemini","version":"8.0.0-rc.5","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false};
+  </script>
+
+  <meta name="description" content="前言本文是博主作为一名前端对RN，Flutter和SwiftUI轻度使用的感受，以及学习过程中碰到的一些问题和解决办法。因为之前并没有接触过原生开发，所以可能存在很初级的问题，或者用笨拙的方法解决了问题，或者内容有错误，有读者发现明显错误的，欢迎评论区指出。（组件，控件，widget） React Native首先是React Native，’Learn once, write anywhere’">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native, Flutter的使用记录">
+<meta property="og:url" content="https://nick22nd.me/posts/RN-Flutter-SwiftUI/index.html">
+<meta property="og:site_name" content="Nick22nd">
+<meta property="og:description" content="前言本文是博主作为一名前端对RN，Flutter和SwiftUI轻度使用的感受，以及学习过程中碰到的一些问题和解决办法。因为之前并没有接触过原生开发，所以可能存在很初级的问题，或者用笨拙的方法解决了问题，或者内容有错误，有读者发现明显错误的，欢迎评论区指出。（组件，控件，widget） React Native首先是React Native，’Learn once, write anywhere’">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://nick22nd.me/posts/images/RN-Arch.png">
+<meta property="og:image" content="https://nick22nd.me/posts/images/archdiagram.png">
+<meta property="article:published_time" content="2020-12-10T01:13:59.000Z">
+<meta property="article:modified_time" content="2021-01-19T14:05:46.504Z">
+<meta property="article:author" content="Nick22nd">
+<meta property="article:tag" content="React Native">
+<meta property="article:tag" content="Flutter">
+<meta property="article:tag" content="SwiftUI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://nick22nd.me/posts/images/RN-Arch.png">
+
+<link rel="canonical" href="https://nick22nd.me/posts/RN-Flutter-SwiftUI/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>React Native, Flutter的使用记录 | Nick22nd</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173897481-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-173897481-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Nick22nd" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Nick22nd</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native"><span class="nav-number">2.</span> <span class="nav-text">React Native</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">原理简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82"><span class="nav-number">2.2.1.</span> <span class="nav-text">网络请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8"><span class="nav-number">2.2.2.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%94%9F%E8%81%94%E7%B3%BB"><span class="nav-number">2.2.3.</span> <span class="nav-text">原生联系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter"><span class="nav-number">3.</span> <span class="nav-text">Flutter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B-1"><span class="nav-number">3.1.</span> <span class="nav-text">原理简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82-1"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">网络请求</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8-1"><span class="nav-number">3.1.2.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-number">3.1.3.</span> <span class="nav-text">状态管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A7%82%E7%9A%84%E6%84%9F%E5%8F%97"><span class="nav-number">5.</span> <span class="nav-text">主观的感受</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Nick22nd"
+      src="/images/Nick.PNG">
+  <p class="site-author-name" itemprop="name">Nick22nd</p>
+  <div class="site-description" itemprop="description">Tracing learning in interaction</div>
+</div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nick22nd.me/posts/RN-Flutter-SwiftUI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Nick.PNG">
+      <meta itemprop="name" content="Nick22nd">
+      <meta itemprop="description" content="Tracing learning in interaction">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nick22nd">
+    </span>
+
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React Native, Flutter的使用记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-12-10 09:13:59" itemprop="dateCreated datePublished" datetime="2020-12-10T09:13:59+08:00">2020-12-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-19 22:05:46" itemprop="dateModified" datetime="2021-01-19T22:05:46+08:00">2021-01-19</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/RN-Flutter-SwiftUI/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/RN-Flutter-SwiftUI/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文是博主作为一名<strong>前端</strong>对RN，Flutter和SwiftUI轻度使用的感受，以及学习过程中碰到的一些问题和解决办法。因为之前并没有接触过原生开发，所以可能存在很初级的问题，或者用笨拙的方法解决了问题，或者内容有错误，有读者发现明显错误的，欢迎评论区指出。<br>（组件，控件，widget）</p>
+<h2 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h2><p>首先是<a target="_blank" rel="noopener" href="https://reactnative.dev/">React Native</a>，’Learn once, write anywhere’. 对于前端而言最为亲切的跨端框架，JSX + 弱化版的CSS能够像前端开发一样直接书写移动端应用。</p>
+<h3 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h3><p>基本原理如图</p>
+<p><img src="../images/RN-Arch.png" alt="RN-Arch"></p>
+<p>React的虚拟dom出口：</p>
+<ol>
+<li>web中的document对象，通过浏览器完成渲染（渲染引擎Webkit/Gecko）。</li>
+<li>以Bridge作为通信中介的原生组件映射，在原生平台渲染。</li>
+</ol>
+<p>第二点这也是Native的名称含义-原生渲染。关键点在于<strong>虚拟DOM和原生组件中的DSL的实现</strong>。如何抽象出不同平台的原生组件的公共部分封装成组件库？然后虚拟DOM如何按照预期地影响原生组件？这中间的适配迭代过程中的开发问题，看过去几年的RN话题的讨论记录和github中总共<a target="_blank" rel="noopener" href="https://github.com/facebook/react-native">2w的issues数量</a>和Airbnb放弃RN时发的<a target="_blank" rel="noopener" href="https://medium.com/airbnb-engineering/react-native-at-airbnb-f95aa460be1c">5篇记录Airbnb使用记录</a>，可见一斑。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>用RN写普通页面和前端开发并没有太大的区别， 只不过从浏览器的DOM标签变成了RN封装的基础组件。需要根据样式和业务逻辑切分和复用组件。</p>
+<h4 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h4><ul>
+<li>支持Fetch，可以用Promise自行封装.</li>
+<li>支持AJAX, 所以封装AJAX的第三方库比如axios也能使用.</li>
+</ul>
+<h4 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h4><p>KV存储也有官网的AsyncStorage</p>
+<h4 id="原生联系"><a href="#原生联系" class="headerlink" title="原生联系"></a>原生联系</h4><p>React Native 可以通过原生模块的方式来通过Bridge异步地和原生代码进行通信。RN中很多库都十分依赖原生，毕竟本身就是对原生的抽象，所以React Native与原生开发密不可分，采用RN大概率需要混合开发。</p>
+<h2 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h2><p><a target="_blank" rel="noopener" href="https://flutter.dev/">Flutter</a>近两年热度最高的跨端技术（issues一直增加）。</p>
+<h3 id="原理简介-1"><a href="#原理简介-1" class="headerlink" title="原理简介"></a>原理简介</h3><p>它采取的方法是将Dart编译成原生系统的可执行程序，控制应用的每一个像素，用Skia绘制并渲染UI，并添加相应的交互逻辑构成部件–Flutter这里是叫Widget。因为<strong>部件的渲染和逻辑都是Flutter来完成</strong>，所以Flutter能够保障不同平台，不同设备UI的一致性。并且本身就提供了Material 和Cupertino两套类原生风格的控件实现，也能保障原生UI的使用体验。当前已经支持Android、iOS、Windows、Linux、Web。<br>基本架构如图<br><img src="../images/archdiagram.png" alt="Arch Diagram"></p>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p>Flutter的很多地方都和React类似, 都是状态更新setState(), 然后触发UI更新.<br>常用的UI相关的Widget有两种</p>
+<ol>
+<li>StatelessWidget: 不维护State</li>
+<li>StatefulWidget: 通过createState创建State, 在State类中通过setState((){ statement })更新状态.</li>
+</ol>
+<h5 id="网络请求-1"><a href="#网络请求-1" class="headerlink" title="网络请求"></a>网络请求</h5><p>Dart IO库中可以创建HTTP请求</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HttpClient httpClient = <span class="keyword">new</span> HttpClient();</span><br><span class="line">HttpClientRequest request = <span class="keyword">await</span> httpClient.getUrl(uri);</span><br></pre></td></tr></table></figure>
+<p>另外有非常优秀的第三方开源网络库DIO, 可以省下自己造轮子的时间.<br>但是作为JavaScript使用者, 注意Dart处理JSON文件不能像直接转换成对象. 这里最好是约定好数据格式, 类似ORM的思路创建对应的Model类, 写好转换逻辑. </p>
+<h4 id="存储-1"><a href="#存储-1" class="headerlink" title="存储"></a>存储</h4><p>KV存储有shared_preferences, Android和iOS都能够适配, 使用也较为简单就不赘述, 具体直接看<a target="_blank" rel="noopener" href="https://pub.dev/packages/shared_preferences">文档</a></p>
+<h4 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h4><p>Flutter这里思路与RN的处理也是非常类似, 对应ReactNative中的useContext, Flutter中有专门的状态共享部件InheritedWidget 能够自上而下的数据共享. 在根Widget中使用InheritedWidget共享状态, 其它Widget都能通过获取该状态. 这里可以使用基于InheritedWidget封装的库Provider来直接使用封装好订阅发布的功能. </p>
+<p>结合Redux状态容器辅助理解, 其实也是Elm的架构逻辑.</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="主观的感受"><a href="#主观的感受" class="headerlink" title="主观的感受"></a>主观的感受</h2><ol>
+<li>在书写体验上，RN使用TSX既能快速开发出页面，又能享受TypeScript的保障，单单就写UI而言能保持和前端基本一致的体验。而Flutter的Dart开发过程中的层层嵌套，真的是很让人崩溃，真希望能赶紧出个DTX（据说有提议）。</li>
+<li>在生态上，RN先出来这么久，各种问题和需求都能找到经验参考，而Flutter还处于快速发展，看看8k的open issues，意味着它还有很长的路要走。</li>
+<li>从技术吸引力来说，Flutter完全掌握渲染部分显然更加吸引人，类似游戏引擎的结构，理论上可以自己添加新的一套UI+逻辑，就像弱化版的浏览器一样。RN就期待着新架构能早点使用起来。</li>
+<li>React Native真的需要对原生开发有所掌握，这方面还需要继续加油。</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://flutter.cn/docs/resources/inside-flutter">Flutter 工作原理</a></p>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2018/08/09/waimai-flutter-practice.html">Flutter原理与实践</a></p>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/09/30/waimai-mobile-architecture-evolution.html">外卖客户端容器化架构的演进</a></p>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2019/12/19/meituan-mrn-practice.html">React Native在美团外卖客户端的实践</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React-Native/" rel="tag"># React Native</a>
+              <a href="/tags/Flutter/" rel="tag"># Flutter</a>
+              <a href="/tags/SwiftUI/" rel="tag"># SwiftUI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/posts/rails-env-in-china/" rel="prev" title="Rails初入的环境问题">
+      <i class="fa fa-chevron-left"></i> Rails初入的环境问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/posts/Building-a-professional-design-tool-on-the-web/" rel="next" title="译-在Web上构建专业的设计工具-Figma">
+      译-在Web上构建专业的设计工具-Figma <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Nick22nd</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://nick22nd.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://nick22nd.me/posts/RN-Flutter-SwiftUI/";
+    this.page.identifier = "posts/RN-Flutter-SwiftUI/";
+    this.page.title = "React Native, Flutter的使用记录";
+    };
+  NexT.utils.loadComments('#disqus_thread', () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://nick22nd.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
