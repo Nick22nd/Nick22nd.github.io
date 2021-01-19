@@ -27,16 +27,16 @@
 <meta property="og:site_name" content="Nick22nd">
 <meta property="og:description" content="前言本文是博主作为一名前端对RN，Flutter和SwiftUI轻度使用的感受，以及学习过程中碰到的一些问题和解决办法。因为之前并没有接触过原生开发，所以可能存在很初级的问题，或者用笨拙的方法解决了问题，或者内容有错误，有读者发现明显错误的，欢迎评论区指出。（组件，控件，widget） React Native首先是React Native，’Learn once, write anywhere’">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nick22nd.me/posts/images/RN-Arch.png">
-<meta property="og:image" content="https://nick22nd.me/posts/images/archdiagram.png">
+<meta property="og:image" content="https://nick22nd.me/images/RN-Arch.png">
+<meta property="og:image" content="https://nick22nd.me/images/archdiagram.png">
 <meta property="article:published_time" content="2020-12-10T01:13:59.000Z">
-<meta property="article:modified_time" content="2021-01-19T14:05:46.504Z">
+<meta property="article:modified_time" content="2021-01-19T14:18:23.078Z">
 <meta property="article:author" content="Nick22nd">
 <meta property="article:tag" content="React Native">
 <meta property="article:tag" content="Flutter">
 <meta property="article:tag" content="SwiftUI">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nick22nd.me/posts/images/RN-Arch.png">
+<meta name="twitter:image" content="https://nick22nd.me/images/RN-Arch.png">
 
 <link rel="canonical" href="https://nick22nd.me/posts/RN-Flutter-SwiftUI/">
 
@@ -179,7 +179,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native"><span class="nav-number">2.</span> <span class="nav-text">React Native</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">原理简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82"><span class="nav-number">2.2.1.</span> <span class="nav-text">网络请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8"><span class="nav-number">2.2.2.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%94%9F%E8%81%94%E7%B3%BB"><span class="nav-number">2.2.3.</span> <span class="nav-text">原生联系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter"><span class="nav-number">3.</span> <span class="nav-text">Flutter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B-1"><span class="nav-number">3.1.</span> <span class="nav-text">原理简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82-1"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">网络请求</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8-1"><span class="nav-number">3.1.2.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-number">3.1.3.</span> <span class="nav-text">状态管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A7%82%E7%9A%84%E6%84%9F%E5%8F%97"><span class="nav-number">5.</span> <span class="nav-text">主观的感受</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native"><span class="nav-number">2.</span> <span class="nav-text">React Native</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">原理简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82"><span class="nav-number">2.2.1.</span> <span class="nav-text">网络请求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8"><span class="nav-number">2.2.2.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E7%94%9F%E8%81%94%E7%B3%BB"><span class="nav-number">2.2.3.</span> <span class="nav-text">原生联系</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flutter"><span class="nav-number">3.</span> <span class="nav-text">Flutter</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86%E7%AE%80%E4%BB%8B-1"><span class="nav-number">3.1.</span> <span class="nav-text">原理简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="nav-number">3.1.1.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82-1"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">网络请求</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8-1"><span class="nav-number">3.1.2.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-number">3.1.3.</span> <span class="nav-text">状态管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A7%82%E7%9A%84%E6%84%9F%E5%8F%97"><span class="nav-number">4.</span> <span class="nav-text">主观的感受</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -254,7 +254,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-19 22:05:46" itemprop="dateModified" datetime="2021-01-19T22:05:46+08:00">2021-01-19</time>
+                <time title="修改时间：2021-01-19 22:18:23" itemprop="dateModified" datetime="2021-01-19T22:18:23+08:00">2021-01-19</time>
               </span>
 
           
@@ -283,7 +283,7 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文是博主作为一名<strong>前端</strong>对RN，Flutter和SwiftUI轻度使用的感受，以及学习过程中碰到的一些问题和解决办法。因为之前并没有接触过原生开发，所以可能存在很初级的问题，或者用笨拙的方法解决了问题，或者内容有错误，有读者发现明显错误的，欢迎评论区指出。<br>（组件，控件，widget）</p>
 <h2 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h2><p>首先是<a target="_blank" rel="noopener" href="https://reactnative.dev/">React Native</a>，’Learn once, write anywhere’. 对于前端而言最为亲切的跨端框架，JSX + 弱化版的CSS能够像前端开发一样直接书写移动端应用。</p>
 <h3 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h3><p>基本原理如图</p>
-<p><img src="../images/RN-Arch.png" alt="RN-Arch"></p>
+<p><img src="/images/RN-Arch.png" alt="RN-Arch"></p>
 <p>React的虚拟dom出口：</p>
 <ol>
 <li>web中的document对象，通过浏览器完成渲染（渲染引擎Webkit/Gecko）。</li>
@@ -298,7 +298,7 @@
 <h4 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h4><p>KV存储也有官网的AsyncStorage</p>
 <h4 id="原生联系"><a href="#原生联系" class="headerlink" title="原生联系"></a>原生联系</h4><p>React Native 可以通过原生模块的方式来通过Bridge异步地和原生代码进行通信。RN中很多库都十分依赖原生，毕竟本身就是对原生的抽象，所以React Native与原生开发密不可分，采用RN大概率需要混合开发。</p>
 <h2 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h2><p><a target="_blank" rel="noopener" href="https://flutter.dev/">Flutter</a>近两年热度最高的跨端技术（issues一直增加）。</p>
-<h3 id="原理简介-1"><a href="#原理简介-1" class="headerlink" title="原理简介"></a>原理简介</h3><p>它采取的方法是将Dart编译成原生系统的可执行程序，控制应用的每一个像素，用Skia绘制并渲染UI，并添加相应的交互逻辑构成部件–Flutter这里是叫Widget。因为<strong>部件的渲染和逻辑都是Flutter来完成</strong>，所以Flutter能够保障不同平台，不同设备UI的一致性。并且本身就提供了Material 和Cupertino两套类原生风格的控件实现，也能保障原生UI的使用体验。当前已经支持Android、iOS、Windows、Linux、Web。<br>基本架构如图<br><img src="../images/archdiagram.png" alt="Arch Diagram"></p>
+<h3 id="原理简介-1"><a href="#原理简介-1" class="headerlink" title="原理简介"></a>原理简介</h3><p>它采取的方法是将Dart编译成原生系统的可执行程序，控制应用的每一个像素，用Skia绘制并渲染UI，并添加相应的交互逻辑构成部件–Flutter这里是叫Widget。因为<strong>部件的渲染和逻辑都是Flutter来完成</strong>，所以Flutter能够保障不同平台，不同设备UI的一致性。并且本身就提供了Material 和Cupertino两套类原生风格的控件实现，也能保障原生UI的使用体验。当前已经支持Android、iOS、Windows、Linux、Web。<br>基本架构如图<br><img src="/images/archdiagram.png" alt="Arch Diagram"></p>
 <h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p>Flutter的很多地方都和React类似, 都是状态更新setState(), 然后触发UI更新.<br>常用的UI相关的Widget有两种</p>
 <ol>
 <li>StatelessWidget: 不维护State</li>
@@ -310,7 +310,7 @@
 <h4 id="存储-1"><a href="#存储-1" class="headerlink" title="存储"></a>存储</h4><p>KV存储有shared_preferences, Android和iOS都能够适配, 使用也较为简单就不赘述, 具体直接看<a target="_blank" rel="noopener" href="https://pub.dev/packages/shared_preferences">文档</a></p>
 <h4 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h4><p>Flutter这里思路与RN的处理也是非常类似, 对应ReactNative中的useContext, Flutter中有专门的状态共享部件InheritedWidget 能够自上而下的数据共享. 在根Widget中使用InheritedWidget共享状态, 其它Widget都能通过获取该状态. 这里可以使用基于InheritedWidget封装的库Provider来直接使用封装好订阅发布的功能. </p>
 <p>结合Redux状态容器辅助理解, 其实也是Elm的架构逻辑.</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="主观的感受"><a href="#主观的感受" class="headerlink" title="主观的感受"></a>主观的感受</h2><ol>
+<h2 id="主观的感受"><a href="#主观的感受" class="headerlink" title="主观的感受"></a>主观的感受</h2><ol>
 <li>在书写体验上，RN使用TSX既能快速开发出页面，又能享受TypeScript的保障，单单就写UI而言能保持和前端基本一致的体验。而Flutter的Dart开发过程中的层层嵌套，真的是很让人崩溃，真希望能赶紧出个DTX（据说有提议）。</li>
 <li>在生态上，RN先出来这么久，各种问题和需求都能找到经验参考，而Flutter还处于快速发展，看看8k的open issues，意味着它还有很长的路要走。</li>
 <li>从技术吸引力来说，Flutter完全掌握渲染部分显然更加吸引人，类似游戏引擎的结构，理论上可以自己添加新的一套UI+逻辑，就像弱化版的浏览器一样。RN就期待着新架构能早点使用起来。</li>
