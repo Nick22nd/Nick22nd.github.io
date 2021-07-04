@@ -155,6 +155,33 @@
   </entry>
   
   <entry>
+    <title>音视频的采集, 编码和播放</title>
+    <link href="https://nick22nd.me/posts/audio-video-encoder-starter/"/>
+    <id>https://nick22nd.me/posts/audio-video-encoder-starter/</id>
+    <published>2020-07-20T03:30:52.000Z</published>
+    <updated>2021-05-10T15:50:35.454Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>浏览器上的音视频, 由于浏览器的严格限制, 只能在</p><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>样本文件<br>flv的样本文件 - 用于测试文件播放<br>yuv的样本文件 - 用于测试视频编码</p><h2 id="概念区分"><a href="#概念区分" class="headerlink" title="概念区分"></a>概念区分</h2><h3 id="组织"><a href="#组织" class="headerlink" title="组织"></a>组织</h3><p>动态影像专家小组（英语：Moving Picture Experts Group，简称MPEG）为一源自ISO与IEC等国际组织的工作小组</p><h2 id="采集"><a href="#采集" class="headerlink" title="采集"></a>采集</h2><p>YUYV为YUV422采样的存储格式中的一种</p><h2 id="编码标准和实现"><a href="#编码标准和实现" class="headerlink" title="编码标准和实现"></a>编码标准和实现</h2><table><thead><tr><th>标准</th><th align="left">实现</th></tr></thead><tbody><tr><td>H.264</td><td align="left">x264</td></tr><tr><td>HEVC</td><td align="left">x265</td></tr></tbody></table><p>下一代标准: HEVC VP9<br>主流标准: H.264, MPEG4, VP8 </p><p>MP3既是音频编码, 也是一种文件格式</p><blockquote><p>MPEG-2 Audio Layer III是当今流行的一种数字音频编码和有损压缩格式</p></blockquote><h2 id="视频编码的控制"><a href="#视频编码的控制" class="headerlink" title="视频编码的控制"></a>视频编码的控制</h2><p><a href="https://blog.csdn.net/leixiaohua1020/article/details/12373947">通过码率控制</a></p><h2 id="播放"><a href="#播放" class="headerlink" title="播放"></a>播放</h2><p><a href="http://www.libsdl.cn/sdl.php">SDL的概念</a></p><p>一个循环中</p><p>解码, 放入对应的buffer中</p><p>音视频同步</p><p>显示</p><p>END</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;浏览器上的音视频, 由于浏览器的严格限制, 只能在&lt;/p&gt;
+&lt;h2 id=&quot;准备&quot;&gt;&lt;a href=&quot;#准备&quot; class=&quot;headerl</summary>
+      
+    
+    
+    
+    
+    <category term="音视频" scheme="https://nick22nd.me/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    
+    <category term="入门" scheme="https://nick22nd.me/tags/%E5%85%A5%E9%97%A8/"/>
+    
+    <category term="概念" scheme="https://nick22nd.me/tags/%E6%A6%82%E5%BF%B5/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaScript的奇妙之旅(一)</title>
     <link href="https://nick22nd.me/posts/about-JavaScript-01/"/>
     <id>https://nick22nd.me/posts/about-JavaScript-01/</id>
@@ -184,9 +211,9 @@
     <link href="https://nick22nd.me/posts/aboutme/index/"/>
     <id>https://nick22nd.me/posts/aboutme/index/</id>
     <published>2020-02-27T14:30:24.000Z</published>
-    <updated>2021-02-27T06:35:30.834Z</updated>
+    <updated>2021-04-29T04:31:53.928Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a>个人简介</h2><p>一个喜欢编程的程序员，非常喜欢Figma，希望能做出像Figma一样的应用。</p><h3 id="喜欢"><a href="#喜欢" class="headerlink" title="喜欢"></a>喜欢</h3><ul><li>编程:<ul><li>Web前端 &amp; 客户端</li><li>图形学</li><li>后端（不擅长数据库）</li></ul></li><li>阅读<ul><li>历史</li><li>实用类 &amp; 心理学 &amp; 设计</li><li>博客（feedly订阅）</li></ul></li><li>动画</li></ul><h3 id="最近读过-在读"><a href="#最近读过-在读" class="headerlink" title="最近读过 || 在读"></a>最近读过 || 在读</h3><h4 id="技术类"><a href="#技术类" class="headerlink" title="技术类"></a>技术类</h4><ol><li>《JavaScript高级程序设计（第4版）》（系统全面的JS书籍）</li><li>《Ruby on Rails 教程（第6版）》（这本书里学到TDD，一个成熟Web框架的组织结构，还有Ruby特有的思想，特别是如何写测试方面，受益良多）</li><li>《重构（第2版）》（正在阅读）</li><li>《编程人生-15位软件先驱访谈录》（就是看了Brendan Eich的访谈提到JS和Scheme的特别关系，才决定重新学习JavaScript。当然每位的访谈内容都各有千秋）</li><li>《C++语言的设计和演化》（正在阅读，虽然我只会C+STL，但是不影响阅读，很有意思的书，兼容C是真不容易，而且如果在C的基础上看C++设计，的确很优美）</li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a>个人简介</h2><p>一个喜欢编程的程序员，非常喜欢Figma，希望能做出像Figma一样的应用。</p><h3 id="喜欢"><a href="#喜欢" class="headerlink" title="喜欢"></a>喜欢</h3><ul><li>编程:<ul><li>Web前端 &amp; 客户端</li><li>图形学</li></ul></li><li>阅读<ul><li>历史</li><li>实用类 &amp; 心理学 &amp; 设计</li><li>博客（feedly订阅）</li></ul></li><li>动画</li></ul><h3 id="最近读过-在读"><a href="#最近读过-在读" class="headerlink" title="最近读过 || 在读"></a>最近读过 || 在读</h3><h4 id="技术类"><a href="#技术类" class="headerlink" title="技术类"></a>技术类</h4><ol><li>《JavaScript高级程序设计（第4版）》（系统全面的JS书籍）</li><li>《Ruby on Rails 教程（第6版）》（这本书里学到TDD，一个成熟Web框架的组织结构，还有Ruby特有的思想，特别是如何写测试方面，受益良多）</li><li>《重构（第2版）》（正在阅读）</li><li>《编程人生-15位软件先驱访谈录》（就是看了Brendan Eich的访谈提到JS和Scheme的特别关系，才决定重新学习JavaScript。当然每位的访谈内容都各有千秋）</li><li>《C++语言的设计和演化》（正在阅读，虽然我只会C+STL，但是不影响阅读，很有意思的书，兼容C是真不容易，而且如果在C的基础上看C++设计，的确很优美）</li></ol>]]></content>
     
     
       
