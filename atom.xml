@@ -3,11 +3,11 @@
   <title>Nick22nd</title>
   
   
-  <link href="https://nick22nd.me/atom.xml" rel="self"/>
+  <link href="https://blog.nick22nd.me/atom.xml" rel="self"/>
   
-  <link href="https://nick22nd.me/"/>
+  <link href="https://blog.nick22nd.me/"/>
   <updated>2021-01-19T14:10:47.105Z</updated>
-  <id>https://nick22nd.me/</id>
+  <id>https://blog.nick22nd.me/</id>
   
   <author>
     <name>Nick22nd</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>译-在Web上构建专业的设计工具-Figma</title>
-    <link href="https://nick22nd.me/posts/building-a-professional-design-tool-on-the-web/"/>
-    <id>https://nick22nd.me/posts/building-a-professional-design-tool-on-the-web/</id>
+    <link href="https://blog.nick22nd.me/posts/building-a-professional-design-tool-on-the-web/"/>
+    <id>https://blog.nick22nd.me/posts/building-a-professional-design-tool-on-the-web/</id>
     <published>2021-01-11T13:45:51.000Z</published>
     <updated>2021-01-19T14:10:47.105Z</updated>
     
@@ -34,22 +34,22 @@
     
     
     
-    <category term="浏览器" scheme="https://nick22nd.me/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    <category term="浏览器" scheme="https://blog.nick22nd.me/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     
-    <category term="Figma" scheme="https://nick22nd.me/tags/Figma/"/>
+    <category term="Figma" scheme="https://blog.nick22nd.me/tags/Figma/"/>
     
-    <category term="翻译" scheme="https://nick22nd.me/tags/%E7%BF%BB%E8%AF%91/"/>
+    <category term="翻译" scheme="https://blog.nick22nd.me/tags/%E7%BF%BB%E8%AF%91/"/>
     
-    <category term="设计工具" scheme="https://nick22nd.me/tags/%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7/"/>
+    <category term="设计工具" scheme="https://blog.nick22nd.me/tags/%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7/"/>
     
-    <category term="Web" scheme="https://nick22nd.me/tags/Web/"/>
+    <category term="Web" scheme="https://blog.nick22nd.me/tags/Web/"/>
     
   </entry>
   
   <entry>
     <title>React Native, Flutter的使用记录</title>
-    <link href="https://nick22nd.me/posts/RN-Flutter-SwiftUI/"/>
-    <id>https://nick22nd.me/posts/RN-Flutter-SwiftUI/</id>
+    <link href="https://blog.nick22nd.me/posts/RN-Flutter-SwiftUI/"/>
+    <id>https://blog.nick22nd.me/posts/RN-Flutter-SwiftUI/</id>
     <published>2020-12-10T01:13:59.000Z</published>
     <updated>2021-01-19T14:18:23.078Z</updated>
     
@@ -64,18 +64,18 @@
     
     
     
-    <category term="React Native" scheme="https://nick22nd.me/tags/React-Native/"/>
+    <category term="React Native" scheme="https://blog.nick22nd.me/tags/React-Native/"/>
     
-    <category term="Flutter" scheme="https://nick22nd.me/tags/Flutter/"/>
+    <category term="Flutter" scheme="https://blog.nick22nd.me/tags/Flutter/"/>
     
-    <category term="SwiftUI" scheme="https://nick22nd.me/tags/SwiftUI/"/>
+    <category term="SwiftUI" scheme="https://blog.nick22nd.me/tags/SwiftUI/"/>
     
   </entry>
   
   <entry>
     <title>Rails初入的环境问题</title>
-    <link href="https://nick22nd.me/posts/rails-env-in-china/"/>
-    <id>https://nick22nd.me/posts/rails-env-in-china/</id>
+    <link href="https://blog.nick22nd.me/posts/rails-env-in-china/"/>
+    <id>https://blog.nick22nd.me/posts/rails-env-in-china/</id>
     <published>2020-11-11T07:09:24.000Z</published>
     <updated>2021-01-04T13:31:28.654Z</updated>
     
@@ -89,21 +89,21 @@
     
     
     
-    <category term="框架" scheme="https://nick22nd.me/categories/%E6%A1%86%E6%9E%B6/"/>
+    <category term="框架" scheme="https://blog.nick22nd.me/categories/%E6%A1%86%E6%9E%B6/"/>
     
-    <category term="网络环境" scheme="https://nick22nd.me/categories/%E6%A1%86%E6%9E%B6/%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83/"/>
+    <category term="网络环境" scheme="https://blog.nick22nd.me/categories/%E6%A1%86%E6%9E%B6/%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83/"/>
     
     
-    <category term="Ruby" scheme="https://nick22nd.me/tags/Ruby/"/>
+    <category term="Ruby" scheme="https://blog.nick22nd.me/tags/Ruby/"/>
     
-    <category term="Rails" scheme="https://nick22nd.me/tags/Rails/"/>
+    <category term="Rails" scheme="https://blog.nick22nd.me/tags/Rails/"/>
     
   </entry>
   
   <entry>
     <title>你不知道的JS（上）</title>
-    <link href="https://nick22nd.me/posts/you-dont-know-JS/"/>
-    <id>https://nick22nd.me/posts/you-dont-know-JS/</id>
+    <link href="https://blog.nick22nd.me/posts/you-dont-know-JS/"/>
+    <id>https://blog.nick22nd.me/posts/you-dont-know-JS/</id>
     <published>2020-08-07T13:20:19.000Z</published>
     <updated>2021-01-04T13:31:28.654Z</updated>
     
@@ -119,16 +119,16 @@
     
     
     
-    <category term="JS" scheme="https://nick22nd.me/tags/JS/"/>
+    <category term="JS" scheme="https://blog.nick22nd.me/tags/JS/"/>
     
-    <category term="读书笔记" scheme="https://nick22nd.me/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    <category term="读书笔记" scheme="https://blog.nick22nd.me/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title>音视频的采集, 编码和播放</title>
-    <link href="https://nick22nd.me/posts/audio-video-encoder-starter/"/>
-    <id>https://nick22nd.me/posts/audio-video-encoder-starter/</id>
+    <link href="https://blog.nick22nd.me/posts/audio-video-encoder-starter/"/>
+    <id>https://blog.nick22nd.me/posts/audio-video-encoder-starter/</id>
     <published>2020-07-20T03:30:52.000Z</published>
     <updated>2021-05-10T15:50:35.454Z</updated>
     
@@ -144,18 +144,18 @@
     
     
     
-    <category term="音视频" scheme="https://nick22nd.me/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://blog.nick22nd.me/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
-    <category term="入门" scheme="https://nick22nd.me/tags/%E5%85%A5%E9%97%A8/"/>
+    <category term="入门" scheme="https://blog.nick22nd.me/tags/%E5%85%A5%E9%97%A8/"/>
     
-    <category term="概念" scheme="https://nick22nd.me/tags/%E6%A6%82%E5%BF%B5/"/>
+    <category term="概念" scheme="https://blog.nick22nd.me/tags/%E6%A6%82%E5%BF%B5/"/>
     
   </entry>
   
   <entry>
     <title>浏览器上音视频的播放和传输</title>
-    <link href="https://nick22nd.me/posts/audio-video-playback-and-transmission-on-the-browser/"/>
-    <id>https://nick22nd.me/posts/audio-video-playback-and-transmission-on-the-browser/</id>
+    <link href="https://blog.nick22nd.me/posts/audio-video-playback-and-transmission-on-the-browser/"/>
+    <id>https://blog.nick22nd.me/posts/audio-video-playback-and-transmission-on-the-browser/</id>
     <published>2020-07-20T03:30:52.000Z</published>
     <updated>2021-01-04T13:31:28.654Z</updated>
     
@@ -171,20 +171,20 @@
     
     
     
-    <category term="音视频" scheme="https://nick22nd.me/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
+    <category term="音视频" scheme="https://blog.nick22nd.me/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/"/>
     
-    <category term="webrtc" scheme="https://nick22nd.me/tags/webrtc/"/>
+    <category term="webrtc" scheme="https://blog.nick22nd.me/tags/webrtc/"/>
     
-    <category term="MSE" scheme="https://nick22nd.me/tags/MSE/"/>
+    <category term="MSE" scheme="https://blog.nick22nd.me/tags/MSE/"/>
     
-    <category term="浏览器" scheme="https://nick22nd.me/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+    <category term="浏览器" scheme="https://blog.nick22nd.me/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
     
   </entry>
   
   <entry>
     <title>JavaScript的奇妙之旅(一)</title>
-    <link href="https://nick22nd.me/posts/about-JavaScript-01/"/>
-    <id>https://nick22nd.me/posts/about-JavaScript-01/</id>
+    <link href="https://blog.nick22nd.me/posts/about-JavaScript-01/"/>
+    <id>https://blog.nick22nd.me/posts/about-JavaScript-01/</id>
     <published>2020-03-23T14:30:24.000Z</published>
     <updated>2021-01-04T13:31:28.654Z</updated>
     
@@ -199,17 +199,17 @@
     
     
     
-    <category term="编程语言" scheme="https://nick22nd.me/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    <category term="编程语言" scheme="https://blog.nick22nd.me/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
     
-    <category term="JavaScript" scheme="https://nick22nd.me/tags/JavaScript/"/>
+    <category term="JavaScript" scheme="https://blog.nick22nd.me/tags/JavaScript/"/>
     
   </entry>
   
   <entry>
     <title>About Me</title>
-    <link href="https://nick22nd.me/posts/aboutme/index/"/>
-    <id>https://nick22nd.me/posts/aboutme/index/</id>
+    <link href="https://blog.nick22nd.me/posts/aboutme/index/"/>
+    <id>https://blog.nick22nd.me/posts/aboutme/index/</id>
     <published>2020-02-27T14:30:24.000Z</published>
     <updated>2021-04-29T04:31:53.928Z</updated>
     
