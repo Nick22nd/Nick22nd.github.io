@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>译-在Web上构建专业的设计工具-Figma</title>
+  
+  <link rel="sitemap" href="https://nick22nd.mesitemap.xml" />
+  
+  <link rel="canonical" href="https://nick22nd.me/posts/building-a-professional-design-tool-on-the-web/">
+  
+  <meta name="description" content="[译]在Web上构建专业的设计工具原文地址 Evan Wallace, CTO at Figma发布于2015年12月7日 （C：译者注释） 我们对未来设计工具的愿景是任何平台的任何人， 都可以轻松地利用设计工具和使用设计内容。这就是我们为什么将Figma,（一个协作式界面设计工具）构建为基于浏览器">
+  
+  
+  <meta name="author" content="Nick22nd">
+  
+  
+  
+  <meta property="og:site_name" content="Nick22nd" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="译-在Web上构建专业的设计工具-Figma" />
+  
+  <meta property="og:description" content="[译]在Web上构建专业的设计工具原文地址 Evan Wallace, CTO at Figma发布于2015年12月7日 （C：译者注释） 我们对未来设计工具的愿景是任何平台的任何人， 都可以轻松地利用设计工具和使用设计内容。这就是我们为什么将Figma,（一个协作式界面设计工具）构建为基于浏览器">
+  
+  <meta property="og:url" content="https://nick22nd.me/posts/building-a-professional-design-tool-on-the-web/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="译-在Web上构建专业的设计工具-Figma">
+  
+  <meta name="twitter:description" content="[译]在Web上构建专业的设计工具原文地址 Evan Wallace, CTO at Figma发布于2015年12月7日 （C：译者注释） 我们对未来设计工具的愿景是任何平台的任何人， 都可以轻松地利用设计工具和使用设计内容。这就是我们为什么将Figma,（一个协作式界面设计工具）构建为基于浏览器">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://nick22nd.me/posts/building-a-professional-design-tool-on-the-web/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+  <script src="/js/search.min.js" defer></script>
+  
+
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Nick22nd" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Nick22nd.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+          
+          <a href="/archives" class="ml">Archives</a>
+          
+        
+        
+          
+            <a href="mailto:Nick22ndme@outlook.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>译-在Web上构建专业的设计工具-Figma</h2>
+
+  <h1 id="译-在Web上构建专业的设计工具"><a href="#译-在Web上构建专业的设计工具" class="headerlink" title="[译]在Web上构建专业的设计工具"></a>[译]在Web上构建专业的设计工具</h1><p><a target="_blank" rel="noopener" href="https://www.figma.com/blog/building-a-professional-design-tool-on-the-web/">原文地址</a> <a target="_blank" rel="noopener" href="https://twitter.com/evanwallace">Evan Wallace</a>, CTO at Figma发布于2015年12月7日 （C：译者注释）</p>
+<p>我们对未来设计工具的愿景是任何平台的任何人， 都可以轻松地利用设计工具和使用设计内容。这就是我们为什么将<a target="_blank" rel="noopener" href="https://www.figma.com/">Figma</a>,（一个协作式界面设计工具）构建为基于浏览器的云服务。当我们着手开发Figma时，我们知道它将是个挑战。要真正取得成功，它必须提供专业人士愿意接受的高保真编辑体验以及在任何平台如出一辙的操作体验。</p>
+<blockquote>
+<p>要实现这一点真的很难。我们基本上最后是在浏览器上构建另一个浏览器。</p>
+</blockquote>
+<p>之所以很难，是因为Web并非被设计为通用计算平台。它最初是作为一种主要用于文档以及基于文档的应用程序开发的技术合集。Web这些技术通常使用针对一次性生效的特定API形式，而不是提供可用于实现各种事情的通用原语（C：可以理解为元素的原始数据）比如：</p>
+<ul>
+<li><p>CSS有很多<a target="_blank" rel="noopener" href="http://www.w3.org/TR/css3-fonts/#font-rend-props">精美的文本布局算法，</a>但是无法自定义算法或读取浏览器的结果，因此文本布局算法可以用作其他算法的一部分。</p>
+</li>
+<li><p>所有的浏览器都提供了<a target="_blank" rel="noopener" href="https://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome">高性能的</a> <a target="_blank" rel="noopener" href="https://msdn.microsoft.com/en-us/library/jj680148(v=vs.85).aspx">GPU合成器，</a>但是Web上没有任何方法可以挂接到渲染算法上，也无法更改合成的方式来添加性能优化或自定义混合模式之类的东西</p>
+</li>
+<li><p>浏览器嵌入了<a target="_blank" rel="noopener" href="https://bugzilla.mozilla.org/show_bug.cgi?id=573948">高度优化的</a> <a target="_blank" rel="noopener" href="https://code.google.com/p/chromium/issues/detail?id=48789">图像</a> <a target="_blank" rel="noopener" href="http://blogs.msdn.com/b/ie/archive/2013/09/12/using-hardware-to-decode-and-load-jpg-images-up-to-45-faster-in-internet-explorer-11.aspx">解码器</a>，这些<a target="_blank" rel="noopener" href="https://code.google.com/p/chromium/issues/detail?id=48789">图像</a><a target="_blank" rel="noopener" href="http://blogs.msdn.com/b/ie/archive/2013/09/12/using-hardware-to-decode-and-load-jpg-images-up-to-45-faster-in-internet-explorer-11.aspx">解码器</a>使用最新的硬件功能从UI线程异步解码图像，但是没有API可以将参数传递给解码器以执行诸如<a target="_blank" rel="noopener" href="https://lists.w3.org/Archives/Public/public-whatwg-archive/2014Apr/0064.html">处理EXIF方向</a>或避免使用drawImage和getImageData时<a target="_blank" rel="noopener" href="https://code.google.com/p/chromium/issues/detail?id=425935#c8">在显示色彩空间中进行烘培</a>。</p>
+</li>
+</ul>
+<p>Web上缺少通用原语的情况正在<a target="_blank" rel="noopener" href="https://extensiblewebmanifesto.org/">开始改变</a>，现在有诸如WebGL和asm.js之类的技术可以使开发人员跳过浏览器并直接与硬件对话。正是这种进步最终使基于Web的高性能图形应用程序变得可实现。开发人员不再需要等待将其添加到Web的新标准，他们可以自己构建这些功能！</p>
+<h2 id="Emscripten"><a href="#Emscripten" class="headerlink" title="Emscripten"></a>Emscripten</h2><p>我们的编辑器是用C ++编写的，并使用<a target="_blank" rel="noopener" href="http://emscripten.org/">emscripten</a>交叉编译器交叉编译为JavaScript 。emscripten编译器针对asm.js 一个JavaScript子集，该子集提供了一种使JavaScript的JIT产生可预测的简洁机器代码的方法，并且在所有现代浏览器中均<a target="_blank" rel="noopener" href="https://hacks.mozilla.org/2015/03/asm-speedups-everywhere/">得到广泛支持</a>。这具有以下好处：</p>
+<ul>
+<li>我们能完全控制内存布局，并且可以在适当时使用紧凑的32-bit float或64-bit double，而不是JavaScript的64-bit double。这对于像我们这样使用大量数据的应用程序非常重要。</li>
+<li>生成的代码完全由分配控制，这可以避免GC带来的暂停，从而更轻松地达到60fps。所有C ++对象只是预分配类型数组中的保留范围，因此从不涉及JavaScript GC。</li>
+<li>使用LLVM的高级优化器对生成的代码进行了预优化。这与C ++模板专业化相结合，可以生成非常有效的代码，该代码的<a target="_blank" rel="noopener" href="https://hacks.mozilla.org/2014/05/asm-js-performance-improvements-in-the-latest-version-of-firefox-make-games-fly/">性能</a>是<a target="_blank" rel="noopener" href="https://hacks.mozilla.org/2014/05/asm-js-performance-improvements-in-the-latest-version-of-firefox-make-games-fly/">本机性能</a>的<a target="_blank" rel="noopener" href="https://hacks.mozilla.org/2014/05/asm-js-performance-improvements-in-the-latest-version-of-firefox-make-games-fly/">2</a>倍<a target="_blank" rel="noopener" href="https://hacks.mozilla.org/2014/05/asm-js-performance-improvements-in-the-latest-version-of-firefox-make-games-fly/">或更高</a>。</li>
+<li>确保所有asm.js代码都没有负优化点，因此JIT可以提前进行编译并提供可预测的性能。常规的JavaScript代码改为依赖JIT启发式，有时在同一代码的后续运行之间，性能有时会大相径庭。</li>
+</ul>
+<p>这并不是说emscripten是完美的。与任何新技术一样，开发之路上也有很多坎。对我们来说，一个大问题是某些浏览器配置无法为包含整个脚本存储空间的巨大类型数组分配大范围的连续地址空间。最坏的情况是<a target="_blank" rel="noopener" href="https://code.google.com/p/chromium/issues/detail?id=394591">Windows上的32位Chrome</a>，有时甚至无法分配256mb类型的数组，因为<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Address_space_layout_randomization">ASLR</a>正在分割地址空间。此后已解决。（C：当时Chrome限制64位为1.4GB，32位为512MB）</p>
+<p>一个有用的技巧是使用句柄为大量资源（如图像和几何缓冲区）使用堆外数据。我们有一个称为IndirectBuffer的内部API（我们在<a target="_blank" rel="noopener" href="https://github.com/evanw/indirectbuffer">这里</a>开放源代码），该API引用一个外部类型的数组并将其提供给C ++。将大型分配移出主堆可减少长时间运行的会话的内存碎片问题，使我们能够在32位浏览器中使用更多有限的地址空间，并允许我们突破64<a target="_blank" rel="noopener" href="https://github.com/WebKit/webkit/blob/f01d2bb66fcde2c3519c4f0c61f790387fd5faee/Source/JavaScriptCore/runtime/ArrayBuffer.h#L255">位中</a>的<a target="_blank" rel="noopener" href="https://github.com/WebKit/webkit/blob/f01d2bb66fcde2c3519c4f0c61f790387fd5faee/Source/JavaScriptCore/runtime/ArrayBuffer.h#L255">31位类型化数组大小限制</a>位浏览器。</p>
+<h2 id="渲染"><a href="#渲染" class="headerlink" title="渲染"></a>渲染</h2><p>我们已经实现了自己的渲染引擎，以确保内容能够在平台之间快速，一致地渲染。浏览器具有惊人的图形实现，我们最初尝试使用它们，而不是构建新的渲染引擎。如果没有低级API来访问浏览器的渲染树，则可用的选项是HTML，SVG或2D画布。这些选择都不令人满意，原因有很多：</p>
+<ul>
+<li>HTML和SVG包含很多负担，并且由于DOM访问，通常比2D canvas API要慢得多。这些通常是针对滚动而不是缩放进行优化的，并且每次缩放比例更改后，几何形状通常都会重新细分（C：Tessellation将很多高阶的图元变成很多小图元的过程）。</li>
+<li>无法保证GPU的加速，并且许多东西仍在CPU上渲染，在某些情况下这可能会非常慢。</li>
+<li>在HTML和SVG中，对遮罩，模糊和混合模式的支持在浏览器之间千差万别，在高DPI显示器上通常不抗锯齿或分辨率太低。</li>
+<li>2D canvas API是立即模式API，而不是保留模式API，因此必须将每帧的所有几何图形重新上传到显卡。这是不必要的浪费，并且可能成为瓶颈。</li>
+<li>文本布局<a target="_blank" rel="noopener" href="https://css-tricks.com/font-rendering-differences-firefox-vs-ie-vs-safari/">在浏览器之间</a>是<a target="_blank" rel="noopener" href="https://css-tricks.com/font-rendering-differences-firefox-vs-ie-vs-safari/">不一致的，</a>甚至<a target="_blank" rel="noopener" href="http://blog.typekit.com/2010/10/21/type-rendering-web-browsers/">在不同平台上</a>的<a target="_blank" rel="noopener" href="http://blog.typekit.com/2010/10/21/type-rendering-web-browsers/">同一浏览器</a>之间也是不一致的。</li>
+<li>我们希望能够添加任何这些渲染API均不支持的功能，例如<a target="_blank" rel="noopener" href="http://i.stack.imgur.com/ivV6l.png">角度渐变</a>。</li>
+</ul>
+<p>我们并没有试着使用HTML，SVG或者2D画布解决上面问题，而是使用WebGL从头开始实现了所有功能。我们的渲染器是高度优化的基于图块的引擎，支持遮罩，模糊，抖动渐变，混合模式，嵌套层不透明度等。所有渲染均在GPU上完成，并且完全抗锯齿。在内部，我们的代码看起来很像浏览器内部的浏览器；我们有自己的DOM，我们的合成器，我们自己的文本布局引擎，并且我们正在考虑添加一个渲染树，就像一个浏览器用来渲染HTML一样。</p>
+<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p>Web平台的功能一直在追赶原生平台，不幸的是目前仍然存在一些差距。尽管我们没有足够的资源来填补一些较大的空白，但我仍然会尽力解决可能的问题。</p>
+<p>在开始使用Figma之前，高DPI自定义光标在Web上确实被broken了。我必须手动修复<a target="_blank" rel="noopener" href="https://code.google.com/p/chromium/issues/detail?id=268537">Chrome</a>，<a target="_blank" rel="noopener" href="https://bugzilla.mozilla.org/show_bug.cgi?id=888689">Firefox</a>和<a target="_blank" rel="noopener" href="https://bugs.webkit.org/show_bug.cgi?id=120783">WebKit，</a>因为它们都以不同的方式broken。仍然没有统一的方法（Firefox使用SVG，Chrome浏览器和WebKit使用-webkit-image-set以及IE使用古老的.cur格式），但至少现在有可能。</p>
+<p>我还修复了一些<a target="_blank" rel="noopener" href="https://bugs.webkit.org/show_bug.cgi?id=97237">严重的</a> <a target="_blank" rel="noopener" href="https://bugs.chromium.org/p/angleproject/issues/detail?id=415">性能</a>和<a target="_blank" rel="noopener" href="https://code.google.com/p/chromium/issues/detail?id=239731">可用性</a>错误，以使我们的产品更好。有时，Web可能令人沮丧，但是浏览器并不是黑匣子（嗯，除了<em>那个</em>浏览器）。通常，解决烦人的Web问题需要泡在浏览器代码一整个下午，或者在一个patch上折腾一天，然后需要等待几个月才发布。</p>
+<p>Web平台还有更多的潜力可以使Figma变得更好：</p>
+<ul>
+<li>我们最大的难点是缺乏进入字形轮廓和字距调整表，其中有目前<a target="_blank" rel="noopener" href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=21939">没有任何方法</a> <a target="_blank" rel="noopener" href="http://www.w3.org/TR/2dcontext2/#textmetrics">在得到的</a>。最主要的问题之一就是字体指纹识别（C：<a target="_blank" rel="noopener" href="https://webbrowsertools.com/font-fingerprint/">字体指纹概念</a>），但是那场战斗<a target="_blank" rel="noopener" href="http://discourse.wicg.io/t/api-to-get-list-of-available-fonts/1197">已经失败了</a>。我们希望可以像其他隐私敏感型API一样，在用户权限提示后公开对字体数据的访问。Chrome浏览器<a target="_blank" rel="noopener" href="https://github.com/DHNishi/LocalFontAccess/blob/master/explainer.md">提出</a>了一个正在开发<a target="_blank" rel="noopener" href="https://code.google.com/p/chromium/issues/detail?id=535764">中的</a>修复程序<a target="_blank" rel="noopener" href="https://github.com/DHNishi/LocalFontAccess/blob/master/explainer.md">提案</a>（它们确实很有帮助！），但是其他浏览器没有其他的可预见性了。</li>
+<li>我们很想增加对常见剪贴板格式（.ai，.pdf等）的支持，但是Web上<a target="_blank" rel="noopener" href="https://github.com/w3c/clipboard-apis/issues/9#issuecomment-159023296">却没有办法做到这一点</a>。规范中唯一的格式是text / plain和text / html（我们的Figma剪贴板“格式”是text / html，二进制数据编码为HTML注释）。</li>
+<li>我们面临的另一个问题是缺乏对OS X触控板捏合手势的支持。Chrome浏览器添加了一个<a target="_blank" rel="noopener" href="https://code.google.com/p/chromium/issues/detail?id=289887">鲜为人知的技巧</a>，其中捏手势使用ctrlKey向下发送wheel事件，并调用preventDefault（）允许页面对其进行处理。这真是太神奇了，它使Figma的缩放和平移变得自然而轻松。我试图<a target="_blank" rel="noopener" href="https://bugzilla.mozilla.org/show_bug.cgi?id=1052253">将其添加到Firefox中，</a>但该尝试目前仍停留。在Safari中进行捏合会导致缩放行为，这确实使用户感到困惑，并且<a target="_blank" rel="noopener" href="https://bugs.webkit.org/show_bug.cgi?id=145214">无法禁用</a>。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>性能和质量是我们最重要的功能。它们与正常功能有所不同，因为您只会在不存在它们时才注意到它们，但它们却与众不同。</p>
+<p>我很高兴终于向世界展示Figma。该产品尚未向公众开放，但您可以<a target="_blank" rel="noopener" href="https://www.figma.com/">注册</a>我们的候补名单并尽快试用。让我们知道您的想法！</p>
+
+  <p><a class="classtest-link" href="/tags/Figma/" rel="tag">Figma</a>, <a class="classtest-link" href="/tags/Web/" rel="tag">Web</a>, <a class="classtest-link" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag">浏览器</a>, <a class="classtest-link" href="/tags/%E7%BF%BB%E8%AF%91/" rel="tag">翻译</a>, <a class="classtest-link" href="/tags/%E8%AE%BE%E8%AE%A1%E5%B7%A5%E5%85%B7/" rel="tag">设计工具</a> — 2021年1月11日</p>
+  
+  <hr>
+<section id="comments" class="mt-2 mb-3">
+
+  <div id="disqus_thread">
+    <a href="#" class="button button-primary" onclick="loadDisqus();return false;">View / Make Comments</a>
+  </div>
+
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'https://nick22nd.me/posts/building-a-professional-design-tool-on-the-web/index.html';
+      this.page.identifier = 'posts/building-a-professional-design-tool-on-the-web/index.html';
+      this.page.title = '译-在Web上构建专业的设计工具-Figma';
+    };
+
+    var is_disqus_loaded = false;
+
+    function loadDisqus() {
+      if (!is_disqus_loaded) {
+        is_disqus_loaded = true;
+
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://nick22nd.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+    }
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+        </div>
+        <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div>
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/Nick22nd" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

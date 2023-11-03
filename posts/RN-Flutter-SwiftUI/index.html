@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>React Native, Flutter的使用记录</title>
+  
+  <link rel="sitemap" href="https://nick22nd.mesitemap.xml" />
+  
+  <link rel="canonical" href="https://nick22nd.me/posts/RN-Flutter-SwiftUI/">
+  
+  <meta name="description" content="前言本文是博主作为一名前端对RN，Flutter和SwiftUI轻度使用的感受，以及学习过程中碰到的一些问题和解决办法。因为之前并没有接触过原生开发，所以可能存在很初级的问题，或者用笨拙的方法解决了问题，或者内容有错误，有读者发现明显错误的，欢迎评论区指出。（组件，控件，widget） React ">
+  
+  
+  <meta name="author" content="Nick22nd">
+  
+  
+  
+  <meta property="og:site_name" content="Nick22nd" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="React Native, Flutter的使用记录" />
+  
+  <meta property="og:description" content="前言本文是博主作为一名前端对RN，Flutter和SwiftUI轻度使用的感受，以及学习过程中碰到的一些问题和解决办法。因为之前并没有接触过原生开发，所以可能存在很初级的问题，或者用笨拙的方法解决了问题，或者内容有错误，有读者发现明显错误的，欢迎评论区指出。（组件，控件，widget） React ">
+  
+  <meta property="og:url" content="https://nick22nd.me/posts/RN-Flutter-SwiftUI/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="React Native, Flutter的使用记录">
+  
+  <meta name="twitter:description" content="前言本文是博主作为一名前端对RN，Flutter和SwiftUI轻度使用的感受，以及学习过程中碰到的一些问题和解决办法。因为之前并没有接触过原生开发，所以可能存在很初级的问题，或者用笨拙的方法解决了问题，或者内容有错误，有读者发现明显错误的，欢迎评论区指出。（组件，控件，widget） React ">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://nick22nd.me/posts/RN-Flutter-SwiftUI/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+  <script src="/js/search.min.js" defer></script>
+  
+
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Nick22nd" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Nick22nd.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+          
+          <a href="/archives" class="ml">Archives</a>
+          
+        
+        
+          
+            <a href="mailto:Nick22ndme@outlook.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>React Native, Flutter的使用记录</h2>
+
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文是博主作为一名<strong>前端</strong>对RN，Flutter和SwiftUI轻度使用的感受，以及学习过程中碰到的一些问题和解决办法。因为之前并没有接触过原生开发，所以可能存在很初级的问题，或者用笨拙的方法解决了问题，或者内容有错误，有读者发现明显错误的，欢迎评论区指出。<br>（组件，控件，widget）</p>
+<h2 id="React-Native"><a href="#React-Native" class="headerlink" title="React Native"></a>React Native</h2><p>首先是<a target="_blank" rel="noopener" href="https://reactnative.dev/">React Native</a>，’Learn once, write anywhere’. 对于前端而言最为亲切的跨端框架，JSX + 弱化版的CSS能够像前端开发一样直接书写移动端应用。</p>
+<h3 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h3><p>基本原理如图</p>
+<p><img src="/images/RN-Arch.png" alt="RN-Arch"></p>
+<p>React的虚拟dom出口：</p>
+<ol>
+<li>web中的document对象，通过浏览器完成渲染（渲染引擎Webkit/Gecko）。</li>
+<li>以Bridge作为通信中介的原生组件映射，在原生平台渲染。</li>
+</ol>
+<p>第二点这也是Native的名称含义-原生渲染。关键点在于<strong>虚拟DOM和原生组件中的DSL的实现</strong>。如何抽象出不同平台的原生组件的公共部分封装成组件库？然后虚拟DOM如何按照预期地影响原生组件？这中间的适配迭代过程中的开发问题，看过去几年的RN话题的讨论记录和github中总共<a target="_blank" rel="noopener" href="https://github.com/facebook/react-native">2w的issues数量</a>和Airbnb放弃RN时发的<a target="_blank" rel="noopener" href="https://medium.com/airbnb-engineering/react-native-at-airbnb-f95aa460be1c">5篇记录Airbnb使用记录</a>，可见一斑。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>用RN写普通页面和前端开发并没有太大的区别， 只不过从浏览器的DOM标签变成了RN封装的基础组件。需要根据样式和业务逻辑切分和复用组件。</p>
+<h4 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h4><ul>
+<li>支持Fetch，可以用Promise自行封装.</li>
+<li>支持AJAX, 所以封装AJAX的第三方库比如axios也能使用.</li>
+</ul>
+<h4 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h4><p>KV存储也有官网的AsyncStorage</p>
+<h4 id="原生联系"><a href="#原生联系" class="headerlink" title="原生联系"></a>原生联系</h4><p>React Native 可以通过原生模块的方式来通过Bridge异步地和原生代码进行通信。RN中很多库都十分依赖原生，毕竟本身就是对原生的抽象，所以React Native与原生开发密不可分，采用RN大概率需要混合开发。</p>
+<h2 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h2><p><a target="_blank" rel="noopener" href="https://flutter.dev/">Flutter</a>近两年热度最高的跨端技术（issues一直增加）。</p>
+<h3 id="原理简介-1"><a href="#原理简介-1" class="headerlink" title="原理简介"></a>原理简介</h3><p>它采取的方法是将Dart编译成原生系统的可执行程序，控制应用的每一个像素，用Skia绘制并渲染UI，并添加相应的交互逻辑构成部件–Flutter这里是叫Widget。因为<strong>部件的渲染和逻辑都是Flutter来完成</strong>，所以Flutter能够保障不同平台，不同设备UI的一致性。并且本身就提供了Material 和Cupertino两套类原生风格的控件实现，也能保障原生UI的使用体验。当前已经支持Android、iOS、Windows、Linux、Web。<br>基本架构如图<br><img src="/images/archdiagram.png" alt="Arch Diagram"></p>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p>Flutter的很多地方都和React类似, 都是状态更新setState(), 然后触发UI更新.<br>常用的UI相关的Widget有两种</p>
+<ol>
+<li>StatelessWidget: 不维护State</li>
+<li>StatefulWidget: 通过createState创建State, 在State类中通过setState((){ statement })更新状态.</li>
+</ol>
+<h5 id="网络请求-1"><a href="#网络请求-1" class="headerlink" title="网络请求"></a>网络请求</h5><p>Dart IO库中可以创建HTTP请求</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HttpClient httpClient = <span class="keyword">new</span> HttpClient();</span><br><span class="line">HttpClientRequest request = <span class="keyword">await</span> httpClient.getUrl(uri);</span><br></pre></td></tr></table></figure>
+<p>另外有非常优秀的第三方开源网络库DIO, 可以省下自己造轮子的时间.<br>但是作为JavaScript使用者, 注意Dart处理JSON文件不能像直接转换成对象. 这里最好是约定好数据格式, 类似ORM的思路创建对应的Model类, 写好转换逻辑. </p>
+<h4 id="存储-1"><a href="#存储-1" class="headerlink" title="存储"></a>存储</h4><p>KV存储有shared_preferences, Android和iOS都能够适配, 使用也较为简单就不赘述, 具体直接看<a target="_blank" rel="noopener" href="https://pub.dev/packages/shared_preferences">文档</a></p>
+<h4 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h4><p>Flutter这里思路与RN的处理也是非常类似, 对应ReactNative中的useContext, Flutter中有专门的状态共享部件InheritedWidget 能够自上而下的数据共享. 在根Widget中使用InheritedWidget共享状态, 其它Widget都能通过获取该状态. 这里可以使用基于InheritedWidget封装的库Provider来直接使用封装好订阅发布的功能. </p>
+<p>结合Redux状态容器辅助理解, 其实也是Elm的架构逻辑.</p>
+<h2 id="主观的感受"><a href="#主观的感受" class="headerlink" title="主观的感受"></a>主观的感受</h2><ol>
+<li>在书写体验上，RN使用TSX既能快速开发出页面，又能享受TypeScript的保障，单单就写UI而言能保持和前端基本一致的体验。而Flutter的Dart开发过程中的层层嵌套，真的是很让人崩溃，真希望能赶紧出个DTX（据说有提议）。</li>
+<li>在生态上，RN先出来这么久，各种问题和需求都能找到经验参考，而Flutter还处于快速发展，看看8k的open issues，意味着它还有很长的路要走。</li>
+<li>从技术吸引力来说，Flutter完全掌握渲染部分显然更加吸引人，类似游戏引擎的结构，理论上可以自己添加新的一套UI+逻辑，就像弱化版的浏览器一样。RN就期待着新架构能早点使用起来。</li>
+<li>React Native真的需要对原生开发有所掌握，这方面还需要继续加油。</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://flutter.cn/docs/resources/inside-flutter">Flutter 工作原理</a></p>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2018/08/09/waimai-flutter-practice.html">Flutter原理与实践</a></p>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/09/30/waimai-mobile-architecture-evolution.html">外卖客户端容器化架构的演进</a></p>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2019/12/19/meituan-mrn-practice.html">React Native在美团外卖客户端的实践</a></p>
+
+  <p><a class="classtest-link" href="/tags/Flutter/" rel="tag">Flutter</a>, <a class="classtest-link" href="/tags/React-Native/" rel="tag">React Native</a>, <a class="classtest-link" href="/tags/SwiftUI/" rel="tag">SwiftUI</a> — 2020年12月10日</p>
+  
+  <hr>
+<section id="comments" class="mt-2 mb-3">
+
+  <div id="disqus_thread">
+    <a href="#" class="button button-primary" onclick="loadDisqus();return false;">View / Make Comments</a>
+  </div>
+
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'https://nick22nd.me/posts/RN-Flutter-SwiftUI/index.html';
+      this.page.identifier = 'posts/RN-Flutter-SwiftUI/index.html';
+      this.page.title = 'React Native, Flutter的使用记录';
+    };
+
+    var is_disqus_loaded = false;
+
+    function loadDisqus() {
+      if (!is_disqus_loaded) {
+        is_disqus_loaded = true;
+
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://nick22nd.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+    }
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+        </div>
+        <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div>
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/Nick22nd" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

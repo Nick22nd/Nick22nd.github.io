@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>你不知道的JS（上）</title>
+  
+  <link rel="sitemap" href="https://nick22nd.mesitemap.xml" />
+  
+  <link rel="canonical" href="https://nick22nd.me/posts/you-dont-know-JS/">
+  
+  <meta name="description" content="1 作用域 referenceERROR， 会在strict模式下，LHS查询全局作用域不能找到抛出，非严格模式下则会创建； 还有在RHS查询一个未声明的变量时 RHS查询完成后，如果对其进行不合理操作，那么就会报typeError错误（比如非函数类型做函数调用，引用null或者undefine值中">
+  
+  
+  <meta name="author" content="Nick22nd">
+  
+  
+  
+  <meta property="og:site_name" content="Nick22nd" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="你不知道的JS（上）" />
+  
+  <meta property="og:description" content="1 作用域 referenceERROR， 会在strict模式下，LHS查询全局作用域不能找到抛出，非严格模式下则会创建； 还有在RHS查询一个未声明的变量时 RHS查询完成后，如果对其进行不合理操作，那么就会报typeError错误（比如非函数类型做函数调用，引用null或者undefine值中">
+  
+  <meta property="og:url" content="https://nick22nd.me/posts/you-dont-know-JS/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="你不知道的JS（上）">
+  
+  <meta name="twitter:description" content="1 作用域 referenceERROR， 会在strict模式下，LHS查询全局作用域不能找到抛出，非严格模式下则会创建； 还有在RHS查询一个未声明的变量时 RHS查询完成后，如果对其进行不合理操作，那么就会报typeError错误（比如非函数类型做函数调用，引用null或者undefine值中">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://nick22nd.me/posts/you-dont-know-JS/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+  <script src="/js/search.min.js" defer></script>
+  
+
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Nick22nd" type="application/atom+xml">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Nick22nd.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/about" class="ml">About</a>
+          
+        
+          
+          <a href="/archives" class="ml">Archives</a>
+          
+        
+        
+          
+            <a href="mailto:Nick22ndme@outlook.com" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>你不知道的JS（上）</h2>
+
+  <h2 id="1-作用域"><a href="#1-作用域" class="headerlink" title="1 作用域"></a>1 作用域</h2><ul>
+<li>referenceERROR， 会在strict模式下，LHS查询全局作用域不能找到抛出，非严格模式下则会创建； 还有在RHS查询一个未声明的变量时</li>
+<li>RHS查询完成后，如果对其进行不合理操作，那么就会报typeError错误（比如非函数类型做函数调用，引用null或者undefine值中的属性）c:果然是有静态分析的</li>
+</ul>
+<h2 id="2-词法作用域"><a href="#2-词法作用域" class="headerlink" title="2 词法作用域"></a>2 词法作用域</h2><h3 id="2-1-词法阶段"><a href="#2-1-词法阶段" class="headerlink" title="2.1 词法阶段"></a>2.1 词法阶段</h3><ul>
+<li>查找，不知道vuex的store中的命名空间是怎样的实现？<h3 id="2-2-欺骗词法"><a href="#2-2-欺骗词法" class="headerlink" title="2.2 欺骗词法"></a>2.2 欺骗词法</h3></li>
+<li>这eval()不是方便XSS吗…..</li>
+<li>with，非严格模式下，如果没有在自己特定作用域，所处函数作用域，全局作用域LHS都没找到，然后就自己创建了一个全局变量</li>
+</ul>
+<h2 id="3-函数作用域与块作用域"><a href="#3-函数作用域与块作用域" class="headerlink" title="3 函数作用域与块作用域"></a>3 函数作用域与块作用域</h2><ol>
+<li><p>隐藏内部实现</p>
+</li>
+<li><p>函数作用域function和(function有着不同的作用， 后者作为函数表达式， 不需要显式地调用函数名。</p>
+</li>
+<li><p>匿名与具名</p>
+<ol>
+<li>前者可以等同于具名函数表达式命名</li>
+</ol>
+</li>
+<li><p>立即执行函数表达式</p>
+<ol>
+<li>IIFE</li>
+<li>两种写法(function(){}) (), (function(){}())</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-提升"><a href="#4-提升" class="headerlink" title="4 提升"></a>4 提升</h2><ol>
+<li>变量和函数的声明会被提前， 而赋值和逻辑运算则会停在原地， 有时候会出现奇怪的错误； 函数提升优先级更高</li>
+</ol>
+<h2 id="5-闭包"><a href="#5-闭包" class="headerlink" title="5 闭包"></a>5 闭包</h2><p>定义： 函数， 在定义时的语法作用域以外的地方被调用； 访问定义时的词法作用域<br>闭包域作用域， 例子非常有意思； var， let<br>模块模式的两个必要条件：</p>
+<ol>
+<li>必须有外部的封闭函数， 函数必须被调用一次（每次调用会产生新的实例</li>
+<li>封闭函数必须返回至少一个内部函数，形成闭包并提供状态的作用接口</li>
+</ol>
+<p>单例模式，IIFE即可完成；<br>命名公共API返回的对象<br>感觉和Java的类，实例，匿名类一个机制</p>
+<h2 id="1-关于this"><a href="#1-关于this" class="headerlink" title="1 关于this"></a>1 关于this</h2><ol>
+<li>不是调用自身而是调用</li>
+</ol>
+<h2 id="2-this全面解析"><a href="#2-this全面解析" class="headerlink" title="2 this全面解析"></a>2 this全面解析</h2><p>从调用位置来理解</p>
+<h3 id="绑定规则"><a href="#绑定规则" class="headerlink" title="绑定规则"></a>绑定规则</h3><ol>
+<li><p>默认绑定</p>
+<ul>
+<li>默认绑定，严格模式下会无法绑定到全局变量中<ol start="2">
+<li>隐式绑定</li>
+</ol>
+</li>
+<li>自适应绑定，类似同名变量在作用域中的覆盖；这里this绑定也会随着调用位置的被覆盖</li>
+<li>参数赋值是一种隐性赋值，传入对象.函数,仅仅是传入函数，相当于是默认绑定<ol start="3">
+<li>显式绑定</li>
+</ol>
+</li>
+<li>call（其实现会通过强制转换为对象，this绑定到obj中）</li>
+<li>apply</li>
+<li>API调用上下文：通过添加一个参数来增加一个绑定对象（本质同call和apply）<ol start="4">
+<li>new绑定</li>
+<li>不存在构造函数，只有对函数的“构造调用”</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>优先级</p>
+<ol>
+<li>bind()的实现，会先检测是否被new调用？替换掉旧的硬绑定：维持不可修改的特性；为什么？因为需要传递调用时添加的参数给下层函数。</li>
+</ol>
+</li>
+<li><p>例外</p>
+<ol>
+<li>apply(null,[2,3])为了传递参数，null会默认</li>
+<li>柯里化</li>
+<li>创建DMZ对象，创建空对象作为this的空间；Object.create(null)</li>
+<li>间接引用，默认绑定</li>
+<li>软绑定，给内置bind包装了成了自适应类似DMZ的方法</li>
+</ol>
+</li>
+<li><p>this</p>
+<ol>
+<li>箭头函数会从函数作用域寻找，this的绑定</li>
+<li>作用域和箭头函数， 和传统的this机制</li>
+</ol>
+</li>
+</ol>
+<h2 id="3-对象"><a href="#3-对象" class="headerlink" title="3 对象"></a>3 对象</h2><ol>
+<li><p>type</p>
+<ol>
+<li>object type</li>
+</ol>
+</li>
+<li><p>属性和方法</p>
+<ol>
+<li>函数永远不会“属于”一个对象； 虽然有些会有this绑定，但这是另一回事</li>
+</ol>
+</li>
+<li><p>数组：数值下标/值对</p>
+</li>
+<li><p>对象复制，c：vue-admin-template中有deepClone是通过键值对的拷贝，const；</p>
+<ol>
+<li>翻译有失误，浅拷贝，深复制</li>
+<li>浅拷贝的assign：将enumerable自有键复制到目标对象，使用=赋值<ol start="5">
+<li>属性描述符： 所有属性都具备了属性描述符</li>
+<li>不变性：</li>
+<li>对象常量</li>
+<li>禁止扩展</li>
+<li>seal：调用2并，设置configable：false；</li>
+<li>freeze：调用3并设置writable：false；大概是最高级别的不可变，引用的对象可以遍历引用对象，全部freeze</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>get 一个undefined确实够有趣的；put应用依然不太明白；（名称：_a_只是命名惯例）</p>
+</li>
+<li><p>存在性：in和hasproperty区；in是<strong>属性</strong>是否存在对象极其原型链（c：in的多义颇有*在c中的1/100风采）</p>
+</li>
+<li><p>Symbol.iterator 与内置的@@iterator（一个迭代器函数对象的汉顺），for of 的本质和改写；</p>
+</li>
+<li><p>为什么永不结束就会挂起</p>
+</li>
+</ol>
+<h2 id="混合对象“类”"><a href="#混合对象“类”" class="headerlink" title="混合对象“类”"></a>混合对象“类”</h2><p> 类也只是一种基础设计模式<br> JS只是模拟类的<br> C：编程和建筑非常像….似乎的确如此</p>
+<p> 这里的多态解释：继承链中不同层次的一个方法名被多次定义，调用方法时会自动选择合适的定义</p>
+<p> JS中类与构造函数，与真正的类有所不同</p>
+<p> 方法继承和重写（多态）取决于你在哪个类的实例中使用；重写不会影响到父类，子类只是一个副本；继承的本质是复制。</p>
+<p> 多重继承…..好吧我对面向对象实在很不熟悉。</p>
+<p> **JS中只有对象，通过关联来连接 **。</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><ol>
+<li>通过call来将this绑定当前context，实现<strong>显式的多态</strong></li>
+<li>先复制，再进行特殊化覆盖….c:真是朴素的方法.  函数的引用问题怎么解决呢？共享一个函数</li>
+<li>寄生继承：完全没明白</li>
+</ol>
+<p>复制对象引用，而不能复制对象本身</p>
+<h2 id="5-原型链"><a href="#5-原型链" class="headerlink" title="5 原型链"></a>5 原型链</h2><ol>
+<li>Object.prototype原型链的最终节点</li>
+<li>底层会覆盖上层的同名，选择最近，</li>
+</ol>
+<p>只存在上层prototype的三种情况：</p>
+<ol>
+<li>默认，直接添加到当前对象，屏蔽属性</li>
+<li>writable:false ，strict 会报错，非~会被忽略（禁用父类的属性“继承”，但是可以通过defineProperty</li>
+<li>上层存在且有setter，那么会调用setter</li>
+</ol>
+<p>隐式屏蔽，obj.a++    ==&gt; obj.a = obj.a + 1 会调用[[put]] </p>
+<h3 id="“类”"><a href="#“类”" class="headerlink" title="“类”"></a>“类”</h3><ol>
+<li>调用new Foo()创建 的每个对象将最终被[[prototype]]链接到<strong>Foo.prototype对象</strong>；并非直接关联到对象，而是通过关联到其他对象的新对象</li>
+<li>原型继承（c:容易造成语义上的误解）</li>
+<li>继承no =&gt; 通过委托访问属性和函数</li>
+<li>new 的机制很有意思，即便new一个普通函数，也会出现构造函数的效果，或者说new 时，函数调用会变成构造函数调用</li>
+<li>所以constructor只是属性名，空白对象没有（可以自己定义），最终会沿着prototype到Object中</li>
+<li>这里直接通过Object.create(obj.prototype)新建对象来关联期待的对象……这个真的很奇怪<ol>
+<li>两种错误示范写法：Bar.prototype = Foo.prototype 直接引用了Foo，任何修改都会同步到Foo</li>
+<li>Bar.prototype = new Foo()  new作为构造函数的触发关键词，会有造成构造函数的副作用<ol start="7">
+<li>ES6可以直接修改prototype   –  Object.setPrototypeOf( source.prototype, target.prototype)</li>
+<li>检查实例的继承祖先（内省、反射）；  isPrototypeOf  ES5： <strong>proto</strong> 的奇怪属性（应该是getter+setter</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="对象关联"><a href="#对象关联" class="headerlink" title="对象关联"></a>对象关联</h3><ol>
+<li>Object.create(null)对象无法进行委托，instance of 检测不到原型链</li>
+</ol>
+<h2 id="行为委托"><a href="#行为委托" class="headerlink" title="行为委托"></a>行为委托</h2><blockquote>
+<p>原型链的本质就是对象之间的关联关系</p>
+</blockquote>
+<p>OLOO</p>
+<ol>
+<li>最好将状态保存到委托者，而不是委托目标</li>
+<li>避免同名函数，不是面向对象重写</li>
+<li>在本身找不到时会使用委托</li>
+</ol>
+<p>的确在理解了JS的原型链机制后，再用它来写java风格，就很奇怪….</p>
+<p>两张图就很清晰了</p>
+<p>C: 其实这种语言特性在业务开发中，表面上不懂也没事，常用的框架将关注点集中到了解决问题上，只需要按照需求填入内容即可，做出的能用，但是一旦出现性能瓶颈，框架考虑范围外的事情（这里其实涉及到泛用性和专用，自由度等的取舍博弈），这时候就会有对底层原理（相对问题而言）理解有所要求。经验和原理同样重要，两者都需要花费时间成本，大量的练习，才能相互印证真正理解why。</p>
+<p>C:DRY其实也包含工作内容，当融会贯通，然后继续重复就毫无意义（边际成本）</p>
+<p>蓝图设计（设计文档）果真就能反应设计的好坏，最起码清晰，层次分明</p>
+<ol>
+<li>类语法糖，让JS看起来真像那么回事儿；但还是有之前的问题，只是语法上更加友好了</li>
+<li>委托轻松了很多，但是命名该怎么解决呢？每一次都换名吗？</li>
+</ol>
+<p>构造和初始化分离</p>
+<p>两种风格的比较：委托更像是灵活的组合</p>
+<p>ES6更好的语法：</p>
+<ol>
+<li><p>class减少使用’,’,简洁声明方法减少function</p>
+</li>
+<li><p>可以轻便地关联对象–setPrototypeOf()</p>
+</li>
+<li><p>简洁方法的副作用，默认返回匿名函数</p>
+<ol>
+<li>没太明白匿名函数递归是怎么回事?</li>
+</ol>
+<p>instanceof 内省， 它的<strong>表面含义与实际语言机制的不同</strong>，尽管结果是符合表面含义</p>
+<p>鸭子类型，JS真是欢乐之源； Promise</p>
+</li>
+</ol>
+<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><h3 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h3><ol>
+<li>通过extend，扩展了对象类型</li>
+<li>class中只能声明方法，减少了犯错的可能</li>
+<li>构造函数问题解决<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
+<li>本质上仍然是prototype的一种语法糖，是实时的委托而不是复制</li>
+<li>共享和私有的实现</li>
+<li>同名属性和方法的屏蔽</li>
+<li>super中的this的动态绑定</li>
+<li>toMethods方法绑定到原方法</li>
+</ol>
+</li>
+</ol>
+<p>class真是个大坑….而且真是别扭</p>
+
+  <p><a class="classtest-link" href="/tags/JS/" rel="tag">JS</a>, <a class="classtest-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a> — 2020年8月7日</p>
+  
+  <hr>
+<section id="comments" class="mt-2 mb-3">
+
+  <div id="disqus_thread">
+    <a href="#" class="button button-primary" onclick="loadDisqus();return false;">View / Make Comments</a>
+  </div>
+
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'https://nick22nd.me/posts/you-dont-know-JS/index.html';
+      this.page.identifier = 'posts/you-dont-know-JS/index.html';
+      this.page.title = '你不知道的JS（上）';
+    };
+
+    var is_disqus_loaded = false;
+
+    function loadDisqus() {
+      if (!is_disqus_loaded) {
+        is_disqus_loaded = true;
+
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://nick22nd.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+    }
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+        </div>
+        <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div>
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/Nick22nd" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
