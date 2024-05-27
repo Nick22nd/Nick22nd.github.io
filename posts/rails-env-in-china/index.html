@@ -1,231 +1,289 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
-  <!-- Minima -->
-  <!-- Hexo theme created by @adisaktijrs -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
+<link rel="stylesheet" href="/css/main.css">
 
-  
-  <title>Rails初入的环境问题</title>
-  
-  <link rel="sitemap" href="https://nick22nd.mesitemap.xml" />
-  
-  <link rel="canonical" href="https://nick22nd.me/posts/rails-env-in-china/">
-  
-  <meta name="description" content="起因博主是从RubyConf China 2020开始前一天才开始写Ruby的Hello World. 在了解了Ruby各种应用和社区发展以后(这个以后有空再补充) , 觉得很有趣, 自然工作之余开始了Ruby和Rails的学习.  参照Ruby China中的入门教程开始配置环境, 期间也遇到过不">
-  
-  
-  <meta name="author" content="Nick22nd">
-  
-  
-  
-  <meta property="og:site_name" content="Nick22nd" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Rails初入的环境问题" />
-  
-  <meta property="og:description" content="起因博主是从RubyConf China 2020开始前一天才开始写Ruby的Hello World. 在了解了Ruby各种应用和社区发展以后(这个以后有空再补充) , 觉得很有趣, 自然工作之余开始了Ruby和Rails的学习.  参照Ruby China中的入门教程开始配置环境, 期间也遇到过不">
-  
-  <meta property="og:url" content="https://nick22nd.me/posts/rails-env-in-china/" />
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Rails初入的环境问题">
-  
-  <meta name="twitter:description" content="起因博主是从RubyConf China 2020开始前一天才开始写Ruby的Hello World. 在了解了Ruby各种应用和社区发展以后(这个以后有空再补充) , 觉得很有趣, 自然工作之余开始了Ruby和Rails的学习.  参照Ruby China中的入门教程开始配置环境, 期间也遇到过不">
-  
-  
-  
-  
-  <meta name="twitter:url" content="https://nick22nd.me/posts/rails-env-in-china/" />
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
 
-  <!-- Preload fonts
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"nick22nd.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="description" content="起因博主是从RubyConf China 2020开始前一天才开始写Ruby的Hello World. 在了解了Ruby各种应用和社区发展以后(这个以后有空再补充) , 觉得很有趣, 自然工作之余开始了Ruby和Rails的学习.  参照Ruby China中的入门教程开始配置环境, 期间也遇到过不少的问题. 有些问题是新手角度特有的, 有些问题是Rails更新结合国内特有的网络环境后新引入. 本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rails初入的环境问题">
+<meta property="og:url" content="https://nick22nd.me/posts/rails-env-in-china/index.html">
+<meta property="og:site_name" content="Nick22nd">
+<meta property="og:description" content="起因博主是从RubyConf China 2020开始前一天才开始写Ruby的Hello World. 在了解了Ruby各种应用和社区发展以后(这个以后有空再补充) , 觉得很有趣, 自然工作之余开始了Ruby和Rails的学习.  参照Ruby China中的入门教程开始配置环境, 期间也遇到过不少的问题. 有些问题是新手角度特有的, 有些问题是Rails更新结合国内特有的网络环境后新引入. 本">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-11T07:09:24.000Z">
+<meta property="article:modified_time" content="2024-05-27T11:00:34.664Z">
+<meta property="article:author" content="Nick22nd">
+<meta property="article:tag" content="Ruby">
+<meta property="article:tag" content="Rails">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://nick22nd.me/posts/rails-env-in-china/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://nick22nd.me/posts/rails-env-in-china/","path":"posts/rails-env-in-china/","title":"Rails初入的环境问题"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Rails初入的环境问题 | Nick22nd</title>
   
-<link rel="stylesheet" href="/css/normalize.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173897481-1"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-173897481-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
 
-  
-<link rel="stylesheet" href="/css/skeleton.css">
 
-  
-<link rel="stylesheet" href="/css/custom.css">
 
-  
-<link rel="stylesheet" href="/css/prism-dark.css">
 
-  
-<link rel="stylesheet" href="/css/prism-line-numbers.css">
 
-  <!-- User css -->
-  
-  
-<link rel="stylesheet" href="/css/user.css">
 
-  
 
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="/images/favicon.png">
 
-  <!-- Custom Theme Color Style
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <style>
-  a:not(.icon) {
-    text-decoration-color: #0FA0CE;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 50%,
-      #0FA0CE 50%
-    );
-  }
-  blockquote {
-    border-left: 8px solid #0FA0CE;
-  }
-  .nanobar .bar {
-    background: #0FA0CE;
-  }
-  .button.button-primary:hover,
-  button.button-primary:hover,
-  input[type="submit"].button-primary:hover,
-  input[type="reset"].button-primary:hover,
-  input[type="button"].button-primary:hover,
-  .button.button-primary:focus,
-  button.button-primary:focus,
-  input[type="submit"].button-primary:focus,
-  input[type="reset"].button-primary:focus,
-  input[type="button"].button-primary:focus {
-    background-color: #0FA0CE;
-    border-color: #0FA0CE;
-  }
-  input[type="email"]:focus,
-  input[type="number"]:focus,
-  input[type="search"]:focus,
-  input[type="text"]:focus,
-  input[type="tel"]:focus,
-  input[type="url"]:focus,
-  input[type="password"]:focus,
-  textarea:focus,
-  select:focus {
-    border: 1px solid #0FA0CE;
-  }
-</style>
-
-  <!-- Google Analytics (With Privacy Settings On)
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RESGCYZB13"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-RESGCYZB13');
-  </script>
-  
-
-  
-  <script src="/js/pic.min.js" defer></script>
-  
-
-  
-  <script src="/js/search.min.js" defer></script>
-  
-
-<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Nick22nd" type="application/atom+xml">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Nick22nd" type="application/atom+xml">
 </head>
 
-<body>
-  <div class="container">
-    <div class="row">
-      <div>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
 
-        <div class="row">
-  <div class="two columns" style="max-width: 50px">
-    <h1 class="mt-2 mode">
-      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
-      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
-      <script >
-        if (localStorage.getItem('preferredTheme') == 'dark') {
-          setDarkMode(true)
-        }
-        function setDarkMode(isDark) {
-          var darkBtn = document.getElementById('darkBtn')
-          var lightBtn = document.getElementById('lightBtn')
-          if (isDark) {
-            lightBtn.style.display = "block"
-            darkBtn.style.display = "none"
-            localStorage.setItem('preferredTheme', 'dark');
-          } else {
-            lightBtn.style.display = "none"
-            darkBtn.style.display = "block"
-            localStorage.removeItem('preferredTheme');
-          }
-          document.body.classList.toggle("darkmode");
-        }
-      </script>
-    </h1>
-  </div>
-
-  <div class="six columns ml-1">
-    <h1 class="mt-2">
-      Hi Nick22nd.
-    </h1>
-  </div>
-
-  <div class="twelve columns">
-    <div class="row">
-      <div class="nine columns left">
-        <a href="/">Home</a>
-        
-          
-          <a href="/about" class="ml">About</a>
-          
-        
-          
-          <a href="/archives" class="ml">Archives</a>
-          
-        
-          
-          <a href="/thinking" class="ml">Thinking</a>
-          
-        
-        
-          
-            <a href="mailto:Nick22ndme@outlook.com" target="_blank" class="ml">Email</a>
-          
-        
-      </div>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    <hr style="margin-bottom: 2.6rem">
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Nick22nd</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
   </div>
 </div>
 
-        <div class="trans">
-            <h2>Rails初入的环境问题</h2>
 
-  <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>博主是从RubyConf China 2020开始前一天才开始写Ruby的Hello World. 在了解了<a target="_blank" rel="noopener" href="http://www.rubyconfchina.org/">Ruby各种应用和社区发展</a>以后(这个以后有空再补充) , 觉得很有趣, 自然工作之余开始了Ruby和Rails的学习. </p>
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li><li class="menu-item menu-item-archives"><a href="/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%B7%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gem%E6%BA%90%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">gem源问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.1.</span> <span class="nav-text">可能的原因:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rails%E4%B8%ADWebpack%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">Rails中Webpack相关的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%AF%B4%E6%98%8E%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">3.1.</span> <span class="nav-text">具体的原因说明以及排查的过程</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Nick22nd"
+      src="/images/Nick.PNG">
+  <p class="site-author-name" itemprop="name">Nick22nd</p>
+  <div class="site-description" itemprop="description">Tracing learning in interaction</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Nick22nd" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Nick22nd" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Nick22ndme" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Nick22ndme" rel="noopener me" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nick22nd.me/posts/rails-env-in-china/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/Nick.PNG">
+      <meta itemprop="name" content="Nick22nd">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Nick22nd">
+      <meta itemprop="description" content="Tracing learning in interaction">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Rails初入的环境问题 | Nick22nd">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Rails初入的环境问题
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-11 15:09:24" itemprop="dateCreated datePublished" datetime="2020-11-11T15:09:24+08:00">2020-11-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-27 19:00:34" itemprop="dateModified" datetime="2024-05-27T19:00:34+08:00">2024-05-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A1%86%E6%9E%B6/%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83/" itemprop="url" rel="index"><span itemprop="name">网络环境</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/posts/rails-env-in-china/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="posts/rails-env-in-china/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>博主是从RubyConf China 2020开始前一天才开始写Ruby的Hello World. 在了解了<a target="_blank" rel="noopener" href="http://www.rubyconfchina.org/">Ruby各种应用和社区发展</a>以后(这个以后有空再补充) , 觉得很有趣, 自然工作之余开始了Ruby和Rails的学习. </p>
 <p><strong>参照</strong><a target="_blank" rel="noopener" href="https://ruby-china.org/wiki/install_ruby_guide">Ruby China</a>中的入门教程开始配置环境, 期间也遇到过不少的问题. 有些问题是新手角度特有的, 有些问题是Rails更新结合国内特有的网络环境后新引入. 本来只是自己记录的笔记, 但后来在群聊中多次见到相关的问题, 所以发出来希望能给碰到相同问题的朋友一些参考吧.</p>
 <h2 id="gem源问题"><a href="#gem源问题" class="headerlink" title="gem源问题"></a>gem源问题</h2><p>报错类似以下形式:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ERROR: While executing gem ... (Gem::RemoteFetcher::UnknownHostError)</span><br><span class="line">    timed out (https:&#x2F;&#x2F;api.rubygems.org&#x2F;latest_specs.4.8.gz)</span><br><span class="line"></span><br><span class="line">ERROR: Could not find a valid gem &#39;rails&#39; (&gt;&#x3D; 0), here is why:</span><br><span class="line">          Unable to download data from https:&#x2F;&#x2F;rubygems.org&#x2F; - timed out (https:&#x2F;&#x2F;api.rubygems.org&#x2F;specs.4.8.gz)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>While executing gem ... (Gem::RemoteFetcher::UnknownHostError)</span><br><span class="line">    timed out (https://api.rubygems.org/latest_specs.4.8.gz)</span><br><span class="line"></span><br><span class="line"><span class="keyword">ERROR: </span>Could not find a valid gem &#x27;rails&#x27; (&gt;= 0), here is why:</span><br><span class="line">          Unable to download data from https://rubygems.org/ - timed out (https://api.rubygems.org/specs.4.8.gz)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="可能的原因"><a href="#可能的原因" class="headerlink" title="可能的原因:"></a>可能的原因:</h3><ol>
-<li>本机的DNS无法获得rubygems.org的IP地址<br>修改本机的DNS, 确保能正常获取到地址, 可以通过curl/wget下载文件来测试问题是否解决.<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.rubygems.org/specs.4.8.gz &gt; specs.4.8.gz </span><br></pre></td></tr></table></figure>
+<li>本机的DNS无法获得rubygems.org的IP地址<br>修改本机的DNS, 确保能正常获取到地址, 可以通过curl&#x2F;wget下载文件来测试问题是否解决.<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.rubygems.org/specs.4.8.gz &gt; specs.4.8.gz </span><br></pre></td></tr></table></figure>
 稳妥的方法是切换到ruby china的国内源(注意taobao的源已经不再维护, 而且<strong>ruby-china后缀是com</strong>)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem sources --add https://gems.ruby-china.com/ --remove https://rubygems.org/</span><br></pre></td></tr></table></figure></li>
 <li>SSL问题, 这个需要更新相关的证书</li>
 <li>Debian系统<br>如果<ol>
 <li>切换源的命令执行后, 依然无法正常切换 &amp;&amp;</li>
-<li>或者直接修改~/.gemrc文件切换后 &amp;&amp;</li>
+<li>或者直接修改~&#x2F;.gemrc文件切换后 &amp;&amp;</li>
 <li>curl命令可以正常下载文件specs.4.8.gz &amp;&amp;</li>
 <li>继续提示ERROR: While executing gem … (Gem::RemoteFetcher::UnknownHostError)timed out</li>
 </ol>
@@ -241,120 +299,150 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
 <p>理论而言, 应该能rails new sample能正常创建项目了, 但是即便npm设置了taobao的镜像, 有很大的可能会在npm下载安装依赖包的时候卡住. 最为典型的就是卡在node-sass.</p>
 <p>先说解决方案:<br>还需要特别设置sass的binding.node的下载地址</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br><span class="line">npm config ls -l             // 查看配置信息, 可以检查下前面两步npm配置是否设置成功</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br><span class="line">npm config <span class="built_in">ls</span> -l             // 查看配置信息, 可以检查下前面两步npm配置是否设置成功</span><br></pre></td></tr></table></figure>
 <h3 id="具体的原因说明以及排查的过程"><a href="#具体的原因说明以及排查的过程" class="headerlink" title="具体的原因说明以及排查的过程"></a>具体的原因说明以及排查的过程</h3><p>node-sass的问题也是坑过了无数前端, 首先它是编译Sass到css库libSass的node绑定, 使用非常广泛, 当前(2020.11.11)原项目团队已经转到dart-sass的开发, node-sass以后应该慢慢会弃用了, 它的安装过程具体分析可以<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020993365">参考此篇</a></p>
 <p>它导致rails出现的问题如下:</p>
 <ol>
 <li>在国内网络情况下, rails创建新项目过程中node-sass中的脚本无法正常拉取github中的文件, 导致需要本地长时间的building(需要python2等一系列依赖), 最后安装失败, 它虽然会报错, 但是也有可能并不会停下, 其它流程都一切正常.</li>
-<li>流程走完, rails new执行报错: Error: Cannot find module ‘@rails/webpacker’, 之前安装未完成造成的;找不到webpack的命令.</li>
+<li>流程走完, rails new执行报错: Error: Cannot find module ‘@rails&#x2F;webpacker’, 之前安装未完成造成的;找不到webpack的命令.</li>
 </ol>
-<p>另外只会在安装过程提示building node-sass以及失败信息, 但是如果你Ctrl+C 取消安装, 然后再重新安装. npm可能会由于node_module/node-sass的文件夹中已经存在相关文件, 以为已经安装成功而略过node-sass. 导致后续出错信息由于webpacker对webpack的封装, 并不再提示node-sass的错误信, 只会提示webpack出错.</p>
-<p>node-sass由于TF-GFW的原因导致无法正常安装, 导致webpack安装出错, 导致webpacker出错, 导致新加Controller后无法被webpacker编译到public/packs中, 于是可能会出现如下错误:</p>
+<p>另外只会在安装过程提示building node-sass以及失败信息, 但是如果你Ctrl+C 取消安装, 然后再重新安装. npm可能会由于node_module&#x2F;node-sass的文件夹中已经存在相关文件, 以为已经安装成功而略过node-sass. 导致后续出错信息由于webpacker对webpack的封装, 并不再提示node-sass的错误信, 只会提示webpack出错.</p>
+<p>node-sass由于TF-GFW的原因导致无法正常安装, 导致webpack安装出错, 导致webpacker出错, 导致新加Controller后无法被webpacker编译到public&#x2F;packs中, 于是可能会出现如下错误:</p>
 <ol>
 <li>manifest为空的报错 </li>
 <li>webpack命令找不到 : (error Command “webpack” not found.) </li>
 <li>webpack安装: yarn add webpack, 继续调试又会报错( Error: Cannot find module ‘webpack-cli’ ),并建议你安装webpack-cli ;</li>
-<li>webpack-cli安装: yarn add -D webpack-cli, 继续调试又会报错( Error: Cannot find module ‘@rails/webpacker’ );<br>@rails/webpacker &gt; node-sass &gt; <a href="mailto:&#x72;&#101;&#x71;&#117;&#x65;&#x73;&#x74;&#x40;&#50;&#46;&#x38;&#56;&#x2e;&#50;">&#x72;&#101;&#x71;&#117;&#x65;&#x73;&#x74;&#x40;&#50;&#46;&#x38;&#56;&#x2e;&#50;</a>: request has been deprecated</li>
+<li>webpack-cli安装: yarn add -D webpack-cli, 继续调试又会报错( Error: Cannot find module ‘@rails&#x2F;webpacker’ );<br>@rails&#x2F;webpacker &gt; node-sass &gt; <a href="mailto:&#114;&#x65;&#x71;&#117;&#101;&#115;&#116;&#x40;&#x32;&#x2e;&#x38;&#x38;&#46;&#x32;">&#114;&#x65;&#x71;&#117;&#101;&#115;&#116;&#x40;&#x32;&#x2e;&#x38;&#x38;&#46;&#x32;</a>: request has been deprecated</li>
 </ol>
 <p>最后不得不吐槽, 这网络环境<strong>简直是在消磨技术热情</strong>, 尤其是各种工具,语言初学阶段, 如Docker, Gradle, Android. 熟手或许能轻而易举地发现并解决, 但是新手刚开始感兴趣去接触, 希望按照官网的教程开始新的旅程, 结果迎面就是一堵高墙, 墙面写着:</p>
 <blockquote>
 <p>“Across the Great Wall, we can reach every corner in the world”.  </p>
 </blockquote>
 
-  <p><a class="classtest-link" href="/tags/Rails/" rel="tag">Rails</a>, <a class="classtest-link" href="/tags/Ruby/" rel="tag">Ruby</a> — 2020年11月11日</p>
-  
-  <hr>
-<section id="comments" class="mt-2 mb-3">
-
-  <div id="disqus_thread">
-    <a href="#" class="button button-primary" onclick="loadDisqus();return false;">View / Make Comments</a>
-  </div>
-
-  <script>
-    var disqus_config = function() {
-      this.page.url = 'https://nick22nd.me/posts/rails-env-in-china/index.html';
-      this.page.identifier = 'posts/rails-env-in-china/index.html';
-      this.page.title = 'Rails初入的环境问题';
-    };
-
-    var is_disqus_loaded = false;
-
-    function loadDisqus() {
-      if (!is_disqus_loaded) {
-        is_disqus_loaded = true;
-
-        var d = document,
-          s = d.createElement('script');
-        s.src = 'https://nick22nd.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-      }
-    }
-
-  </script>
-  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
-
-
-
-        </div>
-        <div class="row mt-2">
-  <h3>Search</h3>
-  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
-  <div style="margin-top: 1.5rem;">
-    <ul id="result"></ul>
-  </div>
-</div>
-        <div class="row mt-2">
-  
-    <div class="eight columns">
-      <p id="madewith">Made with ❤ and
-        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
-        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
-        </a>
-        
-        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
-        
     </div>
 
-    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
-    <div class="four columns mb-3 posisi" >
-      
-      <a class="ml-0 footer-link icon" href="https://github.com/Nick22nd" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
-        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-      </a>
-      
+    
+    
+    
 
-      
+    <footer class="post-footer">
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
 
-      
+  <div class="social-list">
 
-      
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/Nick22ndme">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
 
-      
-
-    </div>
-  
-</div>
-
+            <span class="label">Twitter</span>
+          </a>
       </div>
 
-    </div>
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
 
+            <span class="label">RSS</span>
+          </a>
+      </div>
   </div>
-  <script src="/js/nanobar.min.js"></script>
+</div>
 
-  <script>
-    var options = {
-      classname: 'nanobar',
-      id: 'myNanobar'
-    };
-    var nanobar = new Nanobar(options);
-    nanobar.go(30);
-    nanobar.go(76);
-    nanobar.go(100);
-  </script>
+          <div class="post-tags">
+              <a href="/tags/Ruby/" rel="tag"># Ruby</a>
+              <a href="/tags/Rails/" rel="tag"># Rails</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/you-dont-know-JS/" rel="prev" title="你不知道的JS（上）">
+                  <i class="fa fa-angle-left"></i> 你不知道的JS（上）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/RN-Flutter-SwiftUI/" rel="next" title="React Native, Flutter的使用记录">
+                  React Native, Flutter的使用记录 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Nick22nd</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"nick22nd","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
 
 </body>
-
 </html>
