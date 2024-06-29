@@ -97,7 +97,7 @@
 <p>end</p>
 ]]></content>
       <categories>
-        <category>编程语言</category>
+        <category>技术</category>
       </categories>
       <tags>
         <tag>JavaScript</tag>
@@ -234,6 +234,9 @@
 <li>十分优秀的游戏，非常值得一玩，个别地方稍有糟心的点，但是瑕不掩瑜。期待FS社的下一部作品。</li>
 </ul>
 ]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
       <tags>
         <tag>游戏</tag>
         <tag>评价</tag>
@@ -263,6 +266,12 @@
 <li>Echarts and <The Grammar of Graphics></li>
 </ul>
 ]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>总结</tag>
+      </tags>
   </entry>
   <entry>
     <title>译-在Web上构建专业的设计工具-Figma</title>
@@ -363,7 +372,7 @@
 <li>manifest为空的报错 </li>
 <li>webpack命令找不到 : (error Command “webpack” not found.) </li>
 <li>webpack安装: yarn add webpack, 继续调试又会报错( Error: Cannot find module ‘webpack-cli’ ),并建议你安装webpack-cli ;</li>
-<li>webpack-cli安装: yarn add -D webpack-cli, 继续调试又会报错( Error: Cannot find module ‘@rails&#x2F;webpacker’ );<br>@rails&#x2F;webpacker &gt; node-sass &gt; <a href="mailto:&#114;&#x65;&#x71;&#117;&#101;&#115;&#116;&#x40;&#x32;&#x2e;&#x38;&#x38;&#46;&#x32;">&#114;&#x65;&#x71;&#117;&#101;&#115;&#116;&#x40;&#x32;&#x2e;&#x38;&#x38;&#46;&#x32;</a>: request has been deprecated</li>
+<li>webpack-cli安装: yarn add -D webpack-cli, 继续调试又会报错( Error: Cannot find module ‘@rails&#x2F;webpacker’ );<br>@rails&#x2F;webpacker &gt; node-sass &gt; <a href="mailto:&#x72;&#x65;&#x71;&#x75;&#101;&#115;&#x74;&#x40;&#50;&#46;&#56;&#x38;&#x2e;&#x32;">&#x72;&#x65;&#x71;&#x75;&#101;&#115;&#x74;&#x40;&#50;&#46;&#56;&#x38;&#x2e;&#x32;</a>: request has been deprecated</li>
 </ol>
 <p>最后不得不吐槽, 这网络环境<strong>简直是在消磨技术热情</strong>, 尤其是各种工具,语言初学阶段, 如Docker, Gradle, Android. 熟手或许能轻而易举地发现并解决, 但是新手刚开始感兴趣去接触, 希望按照官网的教程开始新的旅程, 结果迎面就是一堵高墙, 墙面写着:</p>
 <blockquote>
@@ -371,8 +380,7 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>框架</category>
-        <category>网络环境</category>
+        <category>技术</category>
       </categories>
       <tags>
         <tag>Ruby</tag>
