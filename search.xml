@@ -104,6 +104,48 @@
       </tags>
   </entry>
   <entry>
+    <title>音视频的采集, 编码和播放</title>
+    <url>/posts/audio-video-encoder-starter/</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>浏览器上的音视频, 由于浏览器的严格限制, 只能在</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>样本文件<br>flv的样本文件 - 用于测试文件播放<br>yuv的样本文件 - 用于测试视频编码</p>
+<h2 id="概念区分"><a href="#概念区分" class="headerlink" title="概念区分"></a>概念区分</h2><h3 id="组织"><a href="#组织" class="headerlink" title="组织"></a>组织</h3><p>动态影像专家小组（英语：Moving Picture Experts Group，简称MPEG）为一源自ISO与IEC等国际组织的工作小组</p>
+<h2 id="采集"><a href="#采集" class="headerlink" title="采集"></a>采集</h2><p>YUYV为YUV422采样的存储格式中的一种</p>
+<h2 id="编码标准和实现"><a href="#编码标准和实现" class="headerlink" title="编码标准和实现"></a>编码标准和实现</h2><table>
+<thead>
+<tr>
+<th>标准</th>
+<th align="left">实现</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>H.264</td>
+<td align="left">x264</td>
+</tr>
+<tr>
+<td>HEVC</td>
+<td align="left">x265</td>
+</tr>
+</tbody></table>
+<p>下一代标准: HEVC VP9<br>主流标准: H.264, MPEG4, VP8 </p>
+<p>MP3既是音频编码, 也是一种文件格式</p>
+<blockquote>
+<p>MPEG-2 Audio Layer III是当今流行的一种数字音频编码和有损压缩格式</p>
+</blockquote>
+<h2 id="视频编码的控制"><a href="#视频编码的控制" class="headerlink" title="视频编码的控制"></a>视频编码的控制</h2><p><a href="https://blog.csdn.net/leixiaohua1020/article/details/12373947">通过码率控制</a></p>
+<h2 id="播放"><a href="#播放" class="headerlink" title="播放"></a>播放</h2><p><a href="http://www.libsdl.cn/sdl.php">SDL的概念</a></p>
+<p>一个循环中</p>
+<p>解码, 放入对应的buffer中</p>
+<p>音视频同步</p>
+<p>显示</p>
+<p>END</p>
+]]></content>
+      <tags>
+        <tag>音视频</tag>
+        <tag>入门</tag>
+        <tag>概念</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>浏览器上音视频的播放和传输</title>
     <url>/posts/audio-video-playback-and-transmission-on-the-browser/</url>
     <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>音视频成为传输信息的重要媒介，而浏览器作为各平台最为泛用的软件，本文对音视频的在浏览器上的播放和传输进行简单说明。</p>
@@ -158,119 +200,6 @@
         <tag>webrtc</tag>
         <tag>MSE</tag>
         <tag>浏览器</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>音视频的采集, 编码和播放</title>
-    <url>/posts/audio-video-encoder-starter/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>浏览器上的音视频, 由于浏览器的严格限制, 只能在</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>样本文件<br>flv的样本文件 - 用于测试文件播放<br>yuv的样本文件 - 用于测试视频编码</p>
-<h2 id="概念区分"><a href="#概念区分" class="headerlink" title="概念区分"></a>概念区分</h2><h3 id="组织"><a href="#组织" class="headerlink" title="组织"></a>组织</h3><p>动态影像专家小组（英语：Moving Picture Experts Group，简称MPEG）为一源自ISO与IEC等国际组织的工作小组</p>
-<h2 id="采集"><a href="#采集" class="headerlink" title="采集"></a>采集</h2><p>YUYV为YUV422采样的存储格式中的一种</p>
-<h2 id="编码标准和实现"><a href="#编码标准和实现" class="headerlink" title="编码标准和实现"></a>编码标准和实现</h2><table>
-<thead>
-<tr>
-<th>标准</th>
-<th align="left">实现</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>H.264</td>
-<td align="left">x264</td>
-</tr>
-<tr>
-<td>HEVC</td>
-<td align="left">x265</td>
-</tr>
-</tbody></table>
-<p>下一代标准: HEVC VP9<br>主流标准: H.264, MPEG4, VP8 </p>
-<p>MP3既是音频编码, 也是一种文件格式</p>
-<blockquote>
-<p>MPEG-2 Audio Layer III是当今流行的一种数字音频编码和有损压缩格式</p>
-</blockquote>
-<h2 id="视频编码的控制"><a href="#视频编码的控制" class="headerlink" title="视频编码的控制"></a>视频编码的控制</h2><p><a href="https://blog.csdn.net/leixiaohua1020/article/details/12373947">通过码率控制</a></p>
-<h2 id="播放"><a href="#播放" class="headerlink" title="播放"></a>播放</h2><p><a href="http://www.libsdl.cn/sdl.php">SDL的概念</a></p>
-<p>一个循环中</p>
-<p>解码, 放入对应的buffer中</p>
-<p>音视频同步</p>
-<p>显示</p>
-<p>END</p>
-]]></content>
-      <tags>
-        <tag>音视频</tag>
-        <tag>入门</tag>
-        <tag>概念</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《艾尔登法环》通关体验</title>
-    <url>/posts/elden-ring/</url>
-    <content><![CDATA[<p>3.23 达成群星时代的结局，虽然女武神支线尚未完成，以及还有不少小地区没来得及探索，但是游戏进度也算是告一段落了。这里作为一名普通玩家也想来记录自己的体验感想。</p>
-<h2 id="游戏过程"><a href="#游戏过程" class="headerlink" title="游戏过程"></a>游戏过程</h2><ul>
-<li>游戏很早就购买了，本来打算请假体验的，但是奈何工作忙挤不出时间，只有等到周末才开始游玩（终于体会到工作党玩家的心酸了）。我虽然早就听说法师开局是最简单的， 不过出于魂三的初次开局骑士的回忆，决定继续先试试骑士，没想到这直接就是hard模式的开始。<br><img src="/images/elden-ring-knight.jpeg" alt="elden-ring-knight"></li>
-<li>我开局的比较特别，习惯性走的是侧边，所以根本没碰到大树守卫，拿到灵马后简单探索了附近的地区，适应了下战斗系统。然后又因为先走侧边的习惯，绕过了史东威尔城，过了断桥直接到了湖畔断崖，还奇怪史东威尔城那里的王座怎么是空的，入口在哪。不过继续沿着路终于找到了npc，获得了学院的线索。在寻找钥匙的过程中，还探索了不少的地图，古遗迹很早就推到了歌唱蝙蝠那里，作为近战完全没有思路怎么处理。找到钥匙后，开始探索学院，所以我第一个大地图探索的是魔法学院，作为一个低等级骑士，在全是法师的地图疯狂受苦，同时也感受到了法师的远程的便利，加上卡了好几个地方的boss，决定从智力9加点转法师。反正要转法师，所以边探索边加点呗，继续开新地图龙墓，神授塔，盖利德，安瑟河，卡了不少boss。</li>
-<li>然后没忍住看了一波喂狗组佩奇的玻璃大炮法师思路，发现陨石杖和陨石法术位置居然还挺近，就过去拿到了这两件前期神器，同时也结束我的大戟骑士的受苦生涯，开始了肉盾法师的幸福之路。刷点到了陨石术最低条件，加上魔法学院探索得到的头部装备，狂清之前的卡关boss和精英怪。虽然我都已经在亚坛高原上探索地图， 但依然还未找到史东威尔城入口。</li>
-<li>拿到陨石术后，boss战开始变得千篇一律，简单到有些无聊。当然探索新地图还是很有趣的，上火山，王城外围，史东威尔城。卡了很久的boss就是龙装大树守卫，一发雷电就是丝血，只能背板，然后用魔法辉剑磨死，主要是等级太低了。还有魔法到了中后期推图有些困难，没有合适蓝耗的魔法。还有火山坠星兽，都是落地一头秒杀，直到有一天起飞的过程看到了一个地方两个石头靠得非常近，原来不是必打的boss，直接跳过到火山官邸打工直到雪原的暗杀人物，之后又是随缘探索打完碎星，然后才去探索的卡利亚城，做了拉妮的支线，又是为拉妮打工，探索永恒之城和深根地区。啜泣半岛太晚去，数值碾压以至于完全没有压力。另外王城地图实在是太难探索了，小怪伤害高，人均魔法祷告，赐福点间隔远，Boss完全没有什么压迫感。到了雪原，火焰巨人真的是法师的噩梦，卡了实在太久，真的是花了巨大心血找黑刀骨灰，收集材料升级骨灰，找法师近战武器名刀，升级武器，还顺便把鲜血王朝任务清了。只能说黑刀是 真·艾尔登之王，百分比伤害，褪色者岩石球吸引boss火力持盾挡伤害，后期boss基本靠黑刀输出，除非是能稳定吃到灵魂激流。</li>
-</ul>
-<h2 id="让人满意的地方"><a href="#让人满意的地方" class="headerlink" title="让人满意的地方"></a>让人满意的地方</h2><h3 id="一脉相承"><a href="#一脉相承" class="headerlink" title="一脉相承"></a>一脉相承</h3><ul>
-<li>华丽的boss演出，碎星最为突出</li>
-<li>游戏氛围营造和美术风格，让人带入感极强</li>
-<li>精致的箱庭地图，”柳暗花明又一村”的惊喜感</li>
-<li>有特色的怪物和叙事风格</li>
-</ul>
-<h3 id="新的优点"><a href="#新的优点" class="headerlink" title="新的优点"></a>新的优点</h3><ul>
-<li>骨灰降低了难度</li>
-<li>增加了人物跳跃和坐骑</li>
-<li>开放世界，不局限于卡关在某一个Boss处，可以通过探索其他地区变强，后续来攻略</li>
-<li>庞大的地图体量</li>
-</ul>
-<h3 id="让人感觉糟糕的地方"><a href="#让人感觉糟糕的地方" class="headerlink" title="让人感觉糟糕的地方"></a>让人感觉糟糕的地方</h3><ul>
-<li>精英怪和Boss读指令问题实在是破坏了战斗体验，中距离下魔法一出手必定翻滚，部分boss喝血瓶必定攻击</li>
-<li>前期骑士等近战伤害远远低于法师，战斗风险和收益完全不对等</li>
-<li>部分信息指引实在是很糟糕，很容易错过NPC支线，对话中的线索全靠记忆，关键道具提示太少。比如白金之子的秘密符节，如果早期探索该地区错过，后期拿到另外一半时完全没有提示，只能搜索攻略。</li>
-<li>等级优势后，前期Boss战斗显得很无聊（这个谈不上糟糕，只不过开放世界数值设定的取舍问题）</li>
-</ul>
-<h2 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h2><ul>
-<li>十分优秀的游戏，非常值得一玩，个别地方稍有糟心的点，但是瑕不掩瑜。期待FS社的下一部作品。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>游戏</category>
-      </categories>
-      <tags>
-        <tag>游戏</tag>
-        <tag>评价</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2021年的年终总结</title>
-    <url>/posts/summary-of-2020/</url>
-    <content><![CDATA[<h2 id="Life"><a href="#Life" class="headerlink" title="Life"></a>Life</h2><p>看了下2020年的年终总结, 有点奇妙的感觉. 2021读了新的书, 有了新的思考, 也做了之前从未进行的尝试, 也有了新的烦恼. </p>
-<p>这一年感觉像是全新的开始, 3月份换了新的工作, 进入了被称为”互联网”类型的公司. 年轻的同事, 快速的节奏, 还算新的技术, 对我而言的确颇为新奇. 值得感概的是, 虽然并不完美,  但终于有正经的开发流程. 自己作为不同的角色来感受一个项目被推进的, 最终实现的过程, 这的确帮助我学习并理解到了许多沟通交流, 解决问题的思路. 同时也印证了许多读过的道理.</p>
-<p>不过最令人高兴的是工作中碰到许多有趣的同事, 并且都算得上是朋友, 一起吃饭, 玩游戏, 登山. 连团建也不像大多数所说的无聊活动, 而是很单纯地一起去玩.  友好互助的人员氛围, 这大概是最让我满意的一点.</p>
-<h3 id="喜欢的电影"><a href="#喜欢的电影" class="headerlink" title="喜欢的电影"></a>喜欢的电影</h3><p>应该是&lt;卧虎藏龙&gt;, 优秀的配乐, 最后一跳的结局和竹林飘过的镜头让人难忘</p>
-<p>&lt;发条橙&gt;略微有些不适,  但十分精彩, 导演-库布里克和配乐-莫里康内都是有意思的人</p>
-<p>今年第N次尝试学习绘画未果, 趁着生日入了电钢, 希望能点开新的技能树, 目前看来似乎还抱有较大兴趣, 不至于让琴吃灰.</p>
-<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>只能说我的确不喜欢这样的生活, 早出晚归, 挫败感很强, 没有成就感. </p>
-<p>我希望有更多的个人时间去学习新的技能, 参与开源项目, 获得成就感, 或者做些自己热爱或者可能热爱的事情, . 如果一份工作薪酬高并不能给我足够的时间, 那么恐怕也很快就会厌恶离开. </p>
-<blockquote>
-<p>雨很大, 路上的积水有点深, 基本绝了去大厂卷996的念想. 一切以跑路为第一优先级.”</p>
-<p>–某个凌晨的雨夜</p>
-</blockquote>
-<h2 id="Tech"><a href="#Tech" class="headerlink" title="Tech"></a>Tech</h2><p>技术上回想起来颇为羞愧, 今年并没有什么进步, 只不过学会了并不喜欢的小程序开发(并非我的规划内). 厚着脸皮成为了开源项目committer, 然后就没有继续提交了, 有些对不住提名和投票的PMC. 我对许多技术依然抱有热情, 关注着一些动态,  但是有时下班返回住处, 打开IDE真的有些厌倦. 就像曾经喜欢的游戏一样, 看游戏视频的时间超过了游玩的时间. </p>
-<p>然后很多之前的学习都停滞不前, 有时候也会怀疑自己是不是叶公好龙. 希望新的一年里能完成这些的内容的学习, 用自己的技术做更多有趣的事情, 能顺便帮助到其他人就更好了 : - ). </p>
-<ul>
-<li>Swift&#x2F;SwiftUI</li>
-<li>ReactNative</li>
-<li>GAMES101 and C++</li>
-<li>Echarts and <The Grammar of Graphics></li>
-</ul>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>总结</tag>
       </tags>
   </entry>
   <entry>
@@ -331,6 +260,46 @@
       </tags>
   </entry>
   <entry>
+    <title>《艾尔登法环》通关体验</title>
+    <url>/posts/elden-ring/</url>
+    <content><![CDATA[<p>3.23 达成群星时代的结局，虽然女武神支线尚未完成，以及还有不少小地区没来得及探索，但是游戏进度也算是告一段落了。这里作为一名普通玩家也想来记录自己的体验感想。</p>
+<h2 id="游戏过程"><a href="#游戏过程" class="headerlink" title="游戏过程"></a>游戏过程</h2><ul>
+<li>游戏很早就购买了，本来打算请假体验的，但是奈何工作忙挤不出时间，只有等到周末才开始游玩（终于体会到工作党玩家的心酸了）。我虽然早就听说法师开局是最简单的， 不过出于魂三的初次开局骑士的回忆，决定继续先试试骑士，没想到这直接就是hard模式的开始。<br><img src="/images/elden-ring-knight.jpeg" alt="elden-ring-knight"></li>
+<li>我开局的比较特别，习惯性走的是侧边，所以根本没碰到大树守卫，拿到灵马后简单探索了附近的地区，适应了下战斗系统。然后又因为先走侧边的习惯，绕过了史东威尔城，过了断桥直接到了湖畔断崖，还奇怪史东威尔城那里的王座怎么是空的，入口在哪。不过继续沿着路终于找到了npc，获得了学院的线索。在寻找钥匙的过程中，还探索了不少的地图，古遗迹很早就推到了歌唱蝙蝠那里，作为近战完全没有思路怎么处理。找到钥匙后，开始探索学院，所以我第一个大地图探索的是魔法学院，作为一个低等级骑士，在全是法师的地图疯狂受苦，同时也感受到了法师的远程的便利，加上卡了好几个地方的boss，决定从智力9加点转法师。反正要转法师，所以边探索边加点呗，继续开新地图龙墓，神授塔，盖利德，安瑟河，卡了不少boss。</li>
+<li>然后没忍住看了一波喂狗组佩奇的玻璃大炮法师思路，发现陨石杖和陨石法术位置居然还挺近，就过去拿到了这两件前期神器，同时也结束我的大戟骑士的受苦生涯，开始了肉盾法师的幸福之路。刷点到了陨石术最低条件，加上魔法学院探索得到的头部装备，狂清之前的卡关boss和精英怪。虽然我都已经在亚坛高原上探索地图， 但依然还未找到史东威尔城入口。</li>
+<li>拿到陨石术后，boss战开始变得千篇一律，简单到有些无聊。当然探索新地图还是很有趣的，上火山，王城外围，史东威尔城。卡了很久的boss就是龙装大树守卫，一发雷电就是丝血，只能背板，然后用魔法辉剑磨死，主要是等级太低了。还有魔法到了中后期推图有些困难，没有合适蓝耗的魔法。还有火山坠星兽，都是落地一头秒杀，直到有一天起飞的过程看到了一个地方两个石头靠得非常近，原来不是必打的boss，直接跳过到火山官邸打工直到雪原的暗杀人物，之后又是随缘探索打完碎星，然后才去探索的卡利亚城，做了拉妮的支线，又是为拉妮打工，探索永恒之城和深根地区。啜泣半岛太晚去，数值碾压以至于完全没有压力。另外王城地图实在是太难探索了，小怪伤害高，人均魔法祷告，赐福点间隔远，Boss完全没有什么压迫感。到了雪原，火焰巨人真的是法师的噩梦，卡了实在太久，真的是花了巨大心血找黑刀骨灰，收集材料升级骨灰，找法师近战武器名刀，升级武器，还顺便把鲜血王朝任务清了。只能说黑刀是 真·艾尔登之王，百分比伤害，褪色者岩石球吸引boss火力持盾挡伤害，后期boss基本靠黑刀输出，除非是能稳定吃到灵魂激流。</li>
+</ul>
+<h2 id="让人满意的地方"><a href="#让人满意的地方" class="headerlink" title="让人满意的地方"></a>让人满意的地方</h2><h3 id="一脉相承"><a href="#一脉相承" class="headerlink" title="一脉相承"></a>一脉相承</h3><ul>
+<li>华丽的boss演出，碎星最为突出</li>
+<li>游戏氛围营造和美术风格，让人带入感极强</li>
+<li>精致的箱庭地图，”柳暗花明又一村”的惊喜感</li>
+<li>有特色的怪物和叙事风格</li>
+</ul>
+<h3 id="新的优点"><a href="#新的优点" class="headerlink" title="新的优点"></a>新的优点</h3><ul>
+<li>骨灰降低了难度</li>
+<li>增加了人物跳跃和坐骑</li>
+<li>开放世界，不局限于卡关在某一个Boss处，可以通过探索其他地区变强，后续来攻略</li>
+<li>庞大的地图体量</li>
+</ul>
+<h3 id="让人感觉糟糕的地方"><a href="#让人感觉糟糕的地方" class="headerlink" title="让人感觉糟糕的地方"></a>让人感觉糟糕的地方</h3><ul>
+<li>精英怪和Boss读指令问题实在是破坏了战斗体验，中距离下魔法一出手必定翻滚，部分boss喝血瓶必定攻击</li>
+<li>前期骑士等近战伤害远远低于法师，战斗风险和收益完全不对等</li>
+<li>部分信息指引实在是很糟糕，很容易错过NPC支线，对话中的线索全靠记忆，关键道具提示太少。比如白金之子的秘密符节，如果早期探索该地区错过，后期拿到另外一半时完全没有提示，只能搜索攻略。</li>
+<li>等级优势后，前期Boss战斗显得很无聊（这个谈不上糟糕，只不过开放世界数值设定的取舍问题）</li>
+</ul>
+<h2 id="综合"><a href="#综合" class="headerlink" title="综合"></a>综合</h2><ul>
+<li>十分优秀的游戏，非常值得一玩，个别地方稍有糟心的点，但是瑕不掩瑜。期待FS社的下一部作品。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>游戏</tag>
+        <tag>评价</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Rails初入的环境问题</title>
     <url>/posts/rails-env-in-china/</url>
     <content><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>博主是从RubyConf China 2020开始前一天才开始写Ruby的Hello World. 在了解了<a href="http://www.rubyconfchina.org/">Ruby各种应用和社区发展</a>以后(这个以后有空再补充) , 觉得很有趣, 自然工作之余开始了Ruby和Rails的学习. </p>
@@ -372,7 +341,7 @@
 <li>manifest为空的报错 </li>
 <li>webpack命令找不到 : (error Command “webpack” not found.) </li>
 <li>webpack安装: yarn add webpack, 继续调试又会报错( Error: Cannot find module ‘webpack-cli’ ),并建议你安装webpack-cli ;</li>
-<li>webpack-cli安装: yarn add -D webpack-cli, 继续调试又会报错( Error: Cannot find module ‘@rails&#x2F;webpacker’ );<br>@rails&#x2F;webpacker &gt; node-sass &gt; <a href="mailto:&#x72;&#x65;&#x71;&#x75;&#101;&#115;&#x74;&#x40;&#50;&#46;&#56;&#x38;&#x2e;&#x32;">&#x72;&#x65;&#x71;&#x75;&#101;&#115;&#x74;&#x40;&#50;&#46;&#56;&#x38;&#x2e;&#x32;</a>: request has been deprecated</li>
+<li>webpack-cli安装: yarn add -D webpack-cli, 继续调试又会报错( Error: Cannot find module ‘@rails&#x2F;webpacker’ );<br>@rails&#x2F;webpacker &gt; node-sass &gt; <a href="mailto:&#x72;&#x65;&#113;&#x75;&#101;&#115;&#116;&#x40;&#50;&#46;&#x38;&#56;&#x2e;&#50;">&#x72;&#x65;&#113;&#x75;&#101;&#115;&#116;&#x40;&#50;&#46;&#x38;&#56;&#x2e;&#50;</a>: request has been deprecated</li>
 </ol>
 <p>最后不得不吐槽, 这网络环境<strong>简直是在消磨技术热情</strong>, 尤其是各种工具,语言初学阶段, 如Docker, Gradle, Android. 熟手或许能轻而易举地发现并解决, 但是新手刚开始感兴趣去接触, 希望按照官网的教程开始新的旅程, 结果迎面就是一堵高墙, 墙面写着:</p>
 <blockquote>
@@ -385,6 +354,37 @@
       <tags>
         <tag>Ruby</tag>
         <tag>Rails</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2021年的年终总结</title>
+    <url>/posts/summary-of-2020/</url>
+    <content><![CDATA[<h2 id="Life"><a href="#Life" class="headerlink" title="Life"></a>Life</h2><p>看了下2020年的年终总结, 有点奇妙的感觉. 2021读了新的书, 有了新的思考, 也做了之前从未进行的尝试, 也有了新的烦恼. </p>
+<p>这一年感觉像是全新的开始, 3月份换了新的工作, 进入了被称为”互联网”类型的公司. 年轻的同事, 快速的节奏, 还算新的技术, 对我而言的确颇为新奇. 值得感概的是, 虽然并不完美,  但终于有正经的开发流程. 自己作为不同的角色来感受一个项目被推进的, 最终实现的过程, 这的确帮助我学习并理解到了许多沟通交流, 解决问题的思路. 同时也印证了许多读过的道理.</p>
+<p>不过最令人高兴的是工作中碰到许多有趣的同事, 并且都算得上是朋友, 一起吃饭, 玩游戏, 登山. 连团建也不像大多数所说的无聊活动, 而是很单纯地一起去玩.  友好互助的人员氛围, 这大概是最让我满意的一点.</p>
+<h3 id="喜欢的电影"><a href="#喜欢的电影" class="headerlink" title="喜欢的电影"></a>喜欢的电影</h3><p>应该是&lt;卧虎藏龙&gt;, 优秀的配乐, 最后一跳的结局和竹林飘过的镜头让人难忘</p>
+<p>&lt;发条橙&gt;略微有些不适,  但十分精彩, 导演-库布里克和配乐-莫里康内都是有意思的人</p>
+<p>今年第N次尝试学习绘画未果, 趁着生日入了电钢, 希望能点开新的技能树, 目前看来似乎还抱有较大兴趣, 不至于让琴吃灰.</p>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>只能说我的确不喜欢这样的生活, 早出晚归, 挫败感很强, 没有成就感. </p>
+<p>我希望有更多的个人时间去学习新的技能, 参与开源项目, 获得成就感, 或者做些自己热爱或者可能热爱的事情, . 如果一份工作薪酬高并不能给我足够的时间, 那么恐怕也很快就会厌恶离开. </p>
+<blockquote>
+<p>雨很大, 路上的积水有点深, 基本绝了去大厂卷996的念想. 一切以跑路为第一优先级.”</p>
+<p>–某个凌晨的雨夜</p>
+</blockquote>
+<h2 id="Tech"><a href="#Tech" class="headerlink" title="Tech"></a>Tech</h2><p>技术上回想起来颇为羞愧, 今年并没有什么进步, 只不过学会了并不喜欢的小程序开发(并非我的规划内). 厚着脸皮成为了开源项目committer, 然后就没有继续提交了, 有些对不住提名和投票的PMC. 我对许多技术依然抱有热情, 关注着一些动态,  但是有时下班返回住处, 打开IDE真的有些厌倦. 就像曾经喜欢的游戏一样, 看游戏视频的时间超过了游玩的时间. </p>
+<p>然后很多之前的学习都停滞不前, 有时候也会怀疑自己是不是叶公好龙. 希望新的一年里能完成这些的内容的学习, 用自己的技术做更多有趣的事情, 能顺便帮助到其他人就更好了 : - ). </p>
+<ul>
+<li>Swift&#x2F;SwiftUI</li>
+<li>ReactNative</li>
+<li>GAMES101 and C++</li>
+<li>Echarts and <The Grammar of Graphics></li>
+</ul>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>总结</tag>
       </tags>
   </entry>
   <entry>

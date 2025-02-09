@@ -14,9 +14,9 @@
 
 
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"nick22nd.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"nick22nd.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1}}},"stickytabs":false,"motion":{"enable":false,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="起因博主是从RubyConf China 2020开始前一天才开始写Ruby的Hello World. 在了解了Ruby各种应用和社区发展以后(这个以后有空再补充) , 觉得很有趣, 自然工作之余开始了Ruby和Rails的学习.  参照Ruby China中的入门教程开始配置环境, 期间也遇到过不少的问题. 有些问题是新手角度特有的, 有些问题是Rails更新结合国内特有的网络环境后新引入. 本">
 <meta property="og:type" content="article">
@@ -36,14 +36,13 @@
 <link rel="canonical" href="https://nick22nd.me/posts/rails-env-in-china/">
 
 
-
 <script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://nick22nd.me/posts/rails-env-in-china/","path":"posts/rails-env-in-china/","title":"Rails初入的环境问题"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Rails初入的环境问题 | Nick22nd</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173897481-1"></script>
-  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-173897481-1","only_pageview":false,"measure_protocol_api_secret":null}</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RESGCYZB13"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-RESGCYZB13","only_pageview":false,"measure_protocol_api_secret":null}</script>
   <script src="/js/third-party/analytics/google-analytics.js"></script>
 
 
@@ -103,25 +102,25 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup"><div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close" role="button">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -308,7 +307,7 @@
 <li>manifest为空的报错 </li>
 <li>webpack命令找不到 : (error Command “webpack” not found.) </li>
 <li>webpack安装: yarn add webpack, 继续调试又会报错( Error: Cannot find module ‘webpack-cli’ ),并建议你安装webpack-cli ;</li>
-<li>webpack-cli安装: yarn add -D webpack-cli, 继续调试又会报错( Error: Cannot find module ‘@rails&#x2F;webpacker’ );<br>@rails&#x2F;webpacker &gt; node-sass &gt; <a href="mailto:&#x72;&#x65;&#x71;&#x75;&#101;&#115;&#x74;&#x40;&#50;&#46;&#56;&#x38;&#x2e;&#x32;">&#x72;&#x65;&#x71;&#x75;&#101;&#115;&#x74;&#x40;&#50;&#46;&#56;&#x38;&#x2e;&#x32;</a>: request has been deprecated</li>
+<li>webpack-cli安装: yarn add -D webpack-cli, 继续调试又会报错( Error: Cannot find module ‘@rails&#x2F;webpacker’ );<br>@rails&#x2F;webpacker &gt; node-sass &gt; <a href="mailto:&#x72;&#x65;&#113;&#x75;&#101;&#115;&#116;&#x40;&#50;&#46;&#x38;&#56;&#x2e;&#50;">&#x72;&#x65;&#113;&#x75;&#101;&#115;&#116;&#x40;&#50;&#46;&#x38;&#56;&#x2e;&#50;</a>: request has been deprecated</li>
 </ol>
 <p>最后不得不吐槽, 这网络环境<strong>简直是在消磨技术热情</strong>, 尤其是各种工具,语言初学阶段, 如Docker, Gradle, Android. 熟手或许能轻而易举地发现并解决, 但是新手刚开始感兴趣去接触, 希望按照官网的教程开始新的旅程, 结果迎面就是一堵高墙, 墙面写着:</p>
 <blockquote>
